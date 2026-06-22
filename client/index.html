@@ -1,0 +1,3592 @@
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+          rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://qahcplatformstorage.blob.core.windows.net/assets/inmar_logo.png">
+    <style>
+        :root {
+            --aura-size-start: 0rem;
+            --aura-size-mid: 75rem;
+            --aura-size-end: 58.25rem;
+        }
+
+        @media screen and (min-width: 1280px) {
+            :root {
+                --aura-size-start: 0rem;
+                --aura-size-mid: 94.125rem;
+                --aura-size-end: 73.125rem;
+            }
+        }
+
+        @media screen and (min-width: 1536px) {
+            :root {
+                --aura-size-start: 0rem;
+                --aura-size-mid: 110.75rem;
+                --aura-size-end: 86.125rem;
+            }
+        }
+
+        * {
+            font-feature-settings: "kern";
+            font-kerning: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            height: 100%;
+
+            * {
+                box-sizing: border-box;
+            }
+        }
+
+        body {
+            font-family: Inter !important;
+            background: #fefefe !important;
+            margin: 0rem !important;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+
+            * {
+                font-family: Inter;
+            }
+        }
+
+        footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 4rem;
+
+            @media screen and (min-width: 80rem) {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+            footer a,
+            footer p {
+                margin: 0;
+                font-size: 0.875rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 140%;
+                color: #65666c;
+                text-underline-offset: 1px;
+            }
+
+                footer a:hover,
+                footer a:active {
+                    color: #0005f8;
+                }
+
+                footer a:focus-visible {
+                    outline: 2px solid #6f72ff;
+                    outline-offset: 2px;
+                    border-radius: 0.375rem;
+                }
+
+        .footer-left-container,
+        .footer-right-container {
+            display: flex;
+            gap: 1.25rem;
+
+            @media screen and (min-width: 768px) {
+                gap: 2.5rem;
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container.has-alert {
+            justify-content: flex-start;
+            padding-top: var(--alert-clearance, 0);
+        }
+
+            .container.has-alert .form-wrapper {
+                margin-top: 1rem !important;
+            }
+
+        @keyframes auraAnimation {
+            0% {
+                width: var(--aura-size-start);
+                height: var(--aura-size-start);
+                border-radius: var(--aura-size-start);
+            }
+
+            70% {
+                width: var(--aura-size-mid);
+                height: var(--aura-size-mid);
+                border-radius: var(--aura-size-mid);
+                background: radial-gradient( 50% 50% at 50% 50%, rgba(254, 252, 255, 0.4) 0%, rgba(176, 177, 247, 0.4) 70%, rgba(254, 252, 255, 0.4) 100% );
+            }
+
+            100% {
+                width: var(--aura-size-end);
+                height: var(--aura-size-end);
+                border-radius: var(--aura-size-end);
+                background: radial-gradient( 50% 50% at 50% 50%, rgba(254, 252, 255, 0.4) 0%, rgba(176, 177, 247, 0.4) 70%, rgba(254, 252, 255, 0.4) 100% );
+            }
+        }
+
+        .background-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            contain: strict;
+            animation: auraAnimation 2s ease-in-out forwards;
+            transition: all 2s ease-in-out;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes slideUpAnimation {
+            0% {
+                opacity: 0;
+                transform: translate(0, 20%);
+            }
+
+            70% {
+                opacity: 0;
+                transform: translate(0, 10%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        .form-wrapper {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 21.5rem;
+            opacity: 0;
+            animation: slideUpAnimation 2.5s ease-in-out forwards;
+
+            @media screen and (min-width: 1280px) {
+                width: 20.5rem;
+            }
+
+            @media screen and (min-width: 1536px) {
+                width: 24rem;
+            }
+        }
+
+        .logo,
+        #dividedLogo {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #api {
+            width: 100%;
+        }
+
+        .description {
+            color: #65666c;
+            text-align: center;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%;
+            margin: 0.5rem 0 2.5rem 0;
+        }
+
+        .entry {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .entry-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .showPassword {
+            background-color: transparent;
+            padding: 0;
+            position: absolute;
+            right: 1rem;
+            bottom: 1.3rem;
+            margin: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+
+            &:hover,
+            &:focus-visible {
+                background-color: transparent;
+            }
+        }
+
+        label {
+            color: #2c2c2e;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 115%;
+        }
+
+        input {
+            width: 100%;
+            display: flex;
+            min-height: 4rem;
+            padding: 0.875rem 1rem;
+            align-items: center;
+            gap: 0.625rem;
+            align-self: stretch;
+            border-radius: 0.5rem;
+            border: 1px solid #8f9296;
+            background: #fff;
+            margin-top: 0.5rem;
+            color: #2c2c2e;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 140%;
+        }
+
+            input:disabled {
+                border-radius: 0.5rem;
+                border: 1px solid #ecebe4;
+                background: #f8f8f8;
+            }
+
+            input:focus-visible {
+                outline: none;
+                border: 1px solid #0004cb;
+            }
+
+        button {
+            display: flex;
+            width: 13.625rem;
+            padding: 0.75rem 1rem;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.5rem;
+            background: #fff;
+            color: #0005f8;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 150%;
+            letter-spacing: -0.01rem;
+            border: none;
+            cursor: pointer;
+
+            @media screen and (min-width: 1280px) {
+                width: 14.875rem;
+            }
+
+            @media screen and (min-width: 1536px) {
+                width: 17.5rem;
+            }
+
+            &:hover {
+                opacity: 1;
+                background-color: hsla(239, 45%, 40%, 1);
+                color: white;
+            }
+
+            &:focus-visible {
+                background-color: #0005f8;
+                color: white;
+                outline: 2px solid #6f72ff;
+                outline-offset: 1px;
+            }
+        }
+
+        #next {
+            justify-self: center;
+        }
+
+        .text-link-group,
+        .linkContainer {
+            width: 100%;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+            .text-link-group a,
+            .resend-code-btn,
+            .backToSignInLink {
+                padding-block: 0.375rem;
+                color: #2c2c2e;
+                text-align: center;
+                font-size: 0.875rem;
+                font-weight: 600;
+                line-height: 150%;
+                letter-spacing: -0.00875rem;
+                text-decoration: none;
+                opacity: 1 !important;
+
+                &:hover {
+                    text-decoration: underline;
+                    text-decoration-color: #0005f8;
+                    text-decoration-thickness: 2px;
+                    text-underline-offset: 2px;
+                }
+
+                &:focus-visible {
+                    border-radius: 0.5rem;
+                    outline: 2px solid #6f72ff;
+                }
+
+                &:active {
+                    color: #0005f8;
+                }
+            }
+
+        .btn {
+            background: #fff;
+            padding: 5px;
+            width: 150px;
+            height: 35px;
+            border: 1px solid #ff4081;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 50px #ff4081 inset;
+            color: #fff;
+        }
+
+            .btn:hover {
+                box-shadow: 0 0 #ff4081 inset;
+                color: #ff4081;
+            }
+
+            .btn:focus {
+                outline: none;
+            }
+
+        .attrEntry {
+            position: relative;
+            margin-left: -40px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #continue:disabled {
+            opacity: 0.5;
+        }
+
+            #continue:disabled:hover {
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+
+        #continue {
+            margin-right: 55px;
+        }
+
+        #cancel {
+            border-radius: 0.5rem;
+            border: 1px solid #0005f8;
+            background-color: transparent;
+            color: #161bff;
+
+            &:focus-visible,
+            &:hover {
+                outline: 2px solid #6f72ff;
+                outline-offset: 0;
+            }
+        }
+
+        .helpLink {
+            display: none;
+        }
+
+        .tdDivider {
+            padding-left: 20px;
+            border-left: 3px solid gray;
+        }
+
+        .intro {
+            color: #2c2c2e;
+            text-align: center;
+        }
+
+        h2, .heading-xl {
+            font-size: 2.5rem;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 115%;
+            letter-spacing: -0.02em;
+            color: #2d2d2f;
+            margin: 0;
+        }
+
+        #fieldIncorrect {
+            display: none !important;
+        }
+
+        .error {
+            color: #7f0d03;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 140%;
+        }
+
+        #emailVerificationControl_but_change_claims,
+        #passwordResetEmailVerificationControl_but_change_claims {
+            display: none !important;
+        }
+
+        #emailVerificationControl input#email,
+        #passwordResetEmailVerificationControl input#email {
+            pointer-events: none;
+            border-radius: 0.5rem;
+            border: 0.0625rem solid #cfd5d4;
+            background: #f8f8f8;
+            cursor: not-allowed;
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+        }
+
+        #emailVerificationControl_but_send_code,
+        #passwordResetEmailVerificationControl_but_send_code {
+            width: 17.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .migrationAdditionalInfo {
+            margin-block: 0.5rem 2.5rem !important;
+        }
+
+        #verifying_blurb {
+            display: none;
+        }
+
+        .loginTitle {
+            background-color: transparent;
+            display: flex;
+            padding-left: 0.5rem;
+            padding-right: 1rem;
+            position: relative;
+            align-items: center;
+            text-decoration: none;
+            margin: 0;
+            border: 0;
+            font: inherit;
+            vertical-align: baseline;
+            box-sizing: border-box;
+            color: #1d1655;
+            text-align: left;
+            height: 60px;
+        }
+
+            .loginTitle::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -15px;
+                width: calc(100% + 15px);
+                height: 80%;
+                background: #fff;
+                z-index: -1;
+                -webkit-transform: skewX(-22.5deg);
+                transform: skewX(-22.5deg);
+            }
+
+        .loginTitleLogo {
+            fill: #303584;
+            height: 2.6rem;
+            min-height: 2.6rem;
+            min-width: 3rem;
+            display: inline-block;
+            border: 0.2em solid transparent;
+            background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 540 540%22%3E %3Ctitle%3EInmar Intelligence%3C/title%3E %3Cpath fill=%22%23008996%22 d=%22M4.7,311h89.5c19.1,0,29.3-7.1,43.9-18.9l13.4-10.8c4.4-3.5,9.6-7.4,15.5-11.1c-6-3.7-11.2-7.6-15.5-11.1 l-13.4-10.8c-14.6-11.8-24.9-18.9-43.9-18.9H4.7c-2,13.3-3.1,26.9-3.1,40.8C1.6,284.1,2.6,297.7,4.7,311%22/%3E %3Cpath fill=%22%23303584%22 d=%22M258,58.6c24.5,31,45.6,45.5,66.3,45.5h155.1c-49-61.9-124.9-101.6-210-101.6c-18.2,0-36,1.8-53.2,5.3 c8.3,8.4,15.6,17.6,22.3,26.1L258,58.6z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M258,481.8l-19.6,24.8c-6.7,8.5-13.9,17.6-22.3,26.1c17.2,3.5,35,5.3,53.2,5.3c85.1,0,161-39.7,210-101.6 H324.3C303.5,436.3,282.5,450.8,258,481.8%22/%3E %3Cpath fill=%22%23004987%22 d=%22M219.7,394.8l-22.9,18.3c-28.7,23-54.3,40.6-99.1,40.6H74.4c29.7,31.5,67,55.9,108.9,70.1 c11.2-8,21.3-20,33-34.7l19.6-24.8c39.8-50.4,69.5-56.2,88.5-56.2h174.6c9-15,16.6-31,22.6-47.7H301.1 C274.5,360.4,249.4,371,219.7,394.8%22/%3E %3Cpath fill=%22%23004987%22 d=%22M196.8,127.3l22.9,18.3c29.7,23.8,54.8,34.4,81.5,34.4h220.4c-6-16.7-13.6-32.7-22.6-47.7H324.3 c-39.5,0-69.4-32.1-88.5-56.2l-19.6-24.8c-11.6-14.7-21.7-26.7-33-34.7c-41.9,14.2-79.2,38.6-108.9,70.1h23.3 C142.5,86.7,168.1,104.3,196.8,127.3%22/%3E %3Cpath fill=%22%2300756d%22 d=%22M179.1,391.1l22.9-18.3c21.8-17.4,55.7-40.6,99.1-40.6h228.8c3.7-15.5,6-31.4,6.8-47.8H214.5 c-0.5,0-0.9,0.1-1.4,0.1c-14.1,0-27.7,5.8-43.9,18.9l-13.4,10.8c-17.1,13.8-33.5,25.2-61.6,25.2H10.6 c8.3,31.4,22.2,60.5,40.6,86.2h46.5C133.5,425.5,153.2,411.8,179.1,391.1%22/%3E %3Cpath fill=%22%2300756d%22 d=%22M155.8,226.3l13.4,10.8c16.2,13.1,29.8,18.9,43.9,18.9c0.5,0,0.9,0,1.3,0.1h322.3 c-0.8-16.4-3.2-32.3-6.8-47.8H301.1c-43.4,0-77.4-23.2-99.1-40.6l-22.9-18.3c-25.9-20.8-45.6-34.4-81.5-34.4H51.2 c-18.3,25.7-32.2,54.8-40.6,86.2h83.6C122.3,201.2,138.7,212.6,155.8,226.3%22/%3E %3Cpath fill=%22%23303584%22 d=%22M483.8,485.1h-0.4c-6.9,0.1-12.4,5.8-12.3,12.7c-0.1,0.2-0.1,0.3,0,0.4c0.1,6.8,5.7,12.2,12.5,12.2h0.4 c6.9-0.1,12.4-5.8,12.3-12.7v-0.3C496.2,490.5,490.6,485,483.8,485.1z M483.6,508c-5.7-0.1-10.2-4.7-10.2-10.4 c0.1-5.7,4.7-10.2,10.4-10.2h0.5c5.6,0.2,9.9,4.8,9.7,10.4C493.9,503.5,489.2,508.1,483.6,508z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M489.6,495.1c0-3-1.9-4.5-5.3-4.5h-5.5v13.8h3.3v-4.9h1.7l2.5,4.9h3.5l-2.7-5.3 C488.8,498.4,489.8,496.8,489.6,495.1z M484.2,497h-1.8v-3.5h1.8c1.5,0,2.3,0.5,2.3,1.7C486.4,496.6,485.7,497,484.2,497z%22/%3E %3C/svg%3E") currentColor 0 / contain no-repeat;
+            color: transparent;
+            width: 3rem;
+            margin: 0;
+            padding: 0;
+            font: inherit;
+            vertical-align: baseline;
+            box-sizing: border-box;
+        }
+
+        .loginTitleText {
+            color: #303584;
+            display: flex;
+            width: auto;
+            border-left: 1px solid #b8c3cf;
+            flex-direction: column;
+            justify-content: center;
+            text-transform: uppercase;
+            overflow: hidden;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+            font: inherit;
+            vertical-align: baseline;
+            box-sizing: border-box;
+            text-align: left;
+            padding-left: 10px;
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+            .loginTitleText span {
+                color: #f15a22;
+            }
+
+        #appName {
+            color: #303584;
+            font-family: benton-sans-condensed, sans-serif;
+        }
+
+        #tdAppName {
+            font-size: 1.2rem;
+            color: #303584;
+            font-family: benton-sans-condensed, sans-serif;
+        }
+
+        @media (min-width: 568px) {
+            .loginTitle {
+                padding-left: 1rem;
+                padding-right: 2rem;
+            }
+
+                .loginTitle::before {
+                    height: 100%;
+                }
+
+            .loginTitleLogo {
+                min-height: 2em;
+                min-width: 4em;
+                background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 2010.1 599%22%3E %3Ctitle%3EInmar Intelligence%3C/title%3E %3Cpath fill=%22%23008996%22 d=%22M680,366.3h22.2V387H680V366.3z M680.5,414.9h21.2V545h-21.2V414.9z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M740.7,545V414.9h21.4v19.5c11.3-11.1,27.6-22.2,48.8-22.2c24.9,0,38.4,14.3,38.4,38.9V545h-21.2v-89.2 c0-17.3-7.4-25.4-23.9-25.4c-15.5,0-28.6,8.1-42.1,20.9V545H740.7z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M895,513.4v-81.1h-22.7v-17.5H895v-46.3h21.2v46.3h33.8v17.5h-33.8v76.4c0,13.8,4.4,20.7,20.2,20.7 c4.7,0,9.9-0.7,13.3-1.7v17.5c-3.7,0.7-11.8,1.5-18.5,1.5C903.8,546.7,895,536.1,895,513.4%22/%3E %3Cpath fill=%22%23008996%22 d=%22M969.1,479.9c0-47.3,31.5-67.8,58.9-67.8c30.8,0,54.2,21.7,54.2,68.8v4.4h-91.9 c0.7,29.3,17.7,45.1,39.2,45.1c18.7,0,29.3-7.6,39.2-21.2l12.3,10.8c-12.1,17.2-28.6,27.6-53,27.6 C997.2,547.7,969.1,525.3,969.1,479.9 M1062,468.8c-1.7-23.2-12.8-38.9-34.3-38.9c-17.5,0-34,12.1-37,38.9H1062z%22/%3E %3Crect x=%221114%22 y=%22362.6%22 fill=%22%23008996%22 width=%2221.2%22 height=%22182.4%22/%3E %3Crect x=%221175.7%22 y=%22362.6%22 fill=%22%23008996%22 width=%2221.2%22 height=%22182.4%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1236.8,366.3h22.2V387h-22.2V366.3z M1237.3,414.9h21.2V545h-21.2V414.9z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1282.9,562.7c0-13.3,9.1-23.2,23.7-28.8c-7.4-3.5-11.1-8.9-11.1-16.5c0-8.4,6.9-15.5,16.3-20.9 c-12.6-8.1-20-21.2-20-37.5c0-27.4,21.9-46.8,53-46.8c16,0,29.3,5.4,38.4,13.6c7.9-5.9,20.2-10.8,30.8-12.1v18.7 c-7.1,0-15.8,1.2-23.4,4.2c4.2,5.9,6.7,13.6,6.7,22.4c0,28.1-22.2,46.3-52.5,46.3c-7.6,0-14-1.2-20.7-3.2 c-5.4,2.5-9.1,5.7-9.1,10.1c0,5.4,4.2,7.9,18,9.1l26.6,2.2c33,2.2,49.8,12.8,49.8,33.8c0,24.6-25.9,37.7-63.6,37.7 C1301.8,595,1282.9,582.4,1282.9,562.7 M1389.8,559.3c0-11.6-8.6-16.8-36-18.7l-24.6-1.7c-2.5-0.2-4.9-0.5-7.4-0.7 c-12.6,4.4-19.2,12.6-19.2,21.4c0,13.1,13.6,19.5,45.8,19.5C1374.3,579,1389.8,571.1,1389.8,559.3 M1377.5,459.5 c0-19-11.8-30.8-32.8-30.8c-20.2,0-32.8,12.1-32.8,30.8c0,18.7,13.1,30.3,33,30.3C1364.9,489.8,1377.5,478.2,1377.5,459.5%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1426.8,479.9c0-47.3,31.5-67.8,58.9-67.8c30.8,0,54.2,21.7,54.2,68.8v4.4H1448 c0.7,29.3,17.7,45.1,39.2,45.1c18.7,0,29.3-7.6,39.2-21.2l12.3,10.8c-12.1,17.2-28.6,27.6-53,27.6 C1454.9,547.7,1426.8,525.3,1426.8,479.9 M1519.7,468.8c-1.7-23.2-12.8-38.9-34.3-38.9c-17.5,0-34,12.1-37,38.9H1519.7z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1570.2,545V414.9h21.4v19.5c11.3-11.1,27.6-22.2,48.8-22.2c24.9,0,38.4,14.3,38.4,38.9V545h-21.2v-89.2 c0-17.3-7.4-25.4-23.9-25.4c-15.5,0-28.6,8.1-42.1,20.9V545H1570.2z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1707.8,479.9c0-47.6,30.6-67.8,59.6-67.8c29.3,0,43.1,17.2,51,36.5l-18,7.4c-6.4-16.8-16.5-25.9-33.5-25.9 c-18.7,0-37.7,13.1-37.7,49.8c0,32,15.3,50,37.2,50c16.5,0,26.6-7.1,35-26.1l17.5,6.9c-10.1,21.7-25.1,37-53.2,37 C1735.6,547.7,1707.8,524.5,1707.8,479.9%22/%3E %3Cpath fill=%22%23008996%22 d=%22M1837.6,479.9c0-47.3,31.5-67.8,58.9-67.8c30.8,0,54.2,21.7,54.2,68.8v4.4h-91.9 c0.7,29.3,17.7,45.1,39.2,45.1c18.7,0,29.3-7.6,39.2-21.2l12.3,10.8c-12.1,17.2-28.6,27.6-53,27.6 C1865.7,547.7,1837.6,525.3,1837.6,479.9 M1930.5,468.8c-1.7-23.2-12.8-38.9-34.3-38.9c-17.5,0-34,12.1-37,38.9H1930.5z%22/%3E %3Crect x=%22679.6%22 y=%229.2%22 fill=%22%23303584%22 width=%2251.3%22 height=%22301.1%22/%3E %3Cpolygon fill=%22%23303584%22 points=%22794.3,310.3 794.3,9.2 846,9.2 988.4,224.1 989.2,224.1 989.2,9.2 1036.4,9.2 1036.4,310.3 990,310.3 842.3,91 841.5,91 841.5,310.3%22/%3E %3Cpath fill=%22%23303584%22 d=%22M1096.6,310.3V9.2h67.1l80.6,238.8h0.8l78.1-238.8h68.4v301.1h-49.2V85.7h-0.8c-4.5,20.8-11,40.3-17.9,61.4 L1265,310.3h-45.2l-58.2-163.2c-7.3-21.6-11.8-34.6-18.3-63.5h-0.8v226.6H1096.6z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M1427.8,310.3L1534.4,8h50L1691,310.3H1639l-24.4-71.6h-114.3l-24.8,71.6H1427.8z M1515.7,194h83.8 l-41.1-122.1h-0.8L1515.7,194z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M1727.2,310.3V9.2h107.8c71.6,0,113.1,28.9,113.1,90.3c0,48-24.8,75.3-66.7,85.4l70.8,125.3h-54.5 l-67.5-118.8h-52.9v118.8H1727.2z M1777.3,147.2h55.7c42.3,0,65.1-10.6,65.1-46.4c0-34.6-22.4-45.2-65.5-45.2h-55.3V147.2z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M1969,291.5c0-10.7,8.3-19,19-19c10.6,0,18.8,8.2,18.8,18.9c0,10.7-8.3,19-19,19 C1977.2,310.3,1969,302.1,1969,291.5 M2003,291.5c0-8.8-6.5-15.5-15.2-15.5c-8.5,0-14.9,6.6-14.9,15.3c0,8.8,6.4,15.4,15.2,15.4 C1996.6,306.7,2003,300.2,2003,291.5 M1980.4,280.6h8c5,0,8,2.2,8,6.8c0,3.2-1.4,4.9-3.7,6l4.1,7.9h-5.2l-3.7-7.3h-2.5v7.3h-5 V280.6z M1988.1,290.3c2.2,0,3.4-0.7,3.4-2.6c0-1.8-1.2-2.6-3.4-2.6h-2.7v5.2H1988.1z%22/%3E %3Cpath fill=%22%23008996%22 d=%22M8.7,318h89.5c19.1,0,29.3-7.1,43.9-18.9l13.4-10.8c4.4-3.5,9.6-7.4,15.5-11.1c-6-3.7-11.2-7.6-15.5-11.1 l-13.4-10.8c-14.6-11.8-24.9-18.9-43.9-18.9H8.7c-2,13.3-3.1,26.9-3.1,40.8C5.6,291.1,6.6,304.7,8.7,318%22/%3E %3Cpath fill=%22%23303584%22 d=%22M262,65.6c24.5,31,45.6,45.5,66.3,45.5h155.1c-49-61.9-124.9-101.6-210-101.6c-18.2,0-36,1.8-53.2,5.3 c8.3,8.4,15.6,17.6,22.3,26.1L262,65.6z%22/%3E %3Cpath fill=%22%23303584%22 d=%22M262,488.8l-19.6,24.8c-6.7,8.5-13.9,17.6-22.3,26.1c17.2,3.5,35,5.3,53.2,5.3c85.1,0,161-39.7,210-101.6 H328.3C307.5,443.3,286.5,457.8,262,488.8%22/%3E %3Cpath fill=%22%23004987%22 d=%22M223.7,401.8l-22.9,18.3c-28.7,23-54.3,40.6-99.1,40.6H78.4c29.7,31.5,67,55.9,108.9,70.1 c11.2-8,21.3-20,33-34.7l19.6-24.8c39.8-50.4,69.5-56.2,88.5-56.2h174.6c9-15,16.6-31,22.6-47.7H305.1 C278.5,367.4,253.4,378,223.7,401.8%22/%3E %3Cpath fill=%22%23004987%22 d=%22M200.8,134.3l22.9,18.3c29.7,23.8,54.8,34.4,81.5,34.4h220.4c-6-16.7-13.6-32.7-22.6-47.7H328.3 c-39.5,0-69.4-32.1-88.5-56.2l-19.6-24.8c-11.6-14.7-21.7-26.7-33-34.7c-41.9,14.2-79.2,38.6-108.9,70.1h23.3 C146.5,93.7,172.1,111.3,200.8,134.3%22/%3E %3Cpath fill=%22%2300756d%22 d=%22M183.1,398.1l22.9-18.3c21.8-17.4,55.7-40.6,99.1-40.6h228.8c3.7-15.5,6-31.4,6.8-47.8H218.5 c-0.5,0-0.9,0.1-1.4,0.1c-14.1,0-27.7,5.8-43.9,18.9l-13.4,10.8c-17.1,13.8-33.5,25.2-61.6,25.2H14.6 c8.3,31.4,22.2,60.5,40.6,86.2h46.5C137.5,432.5,157.2,418.8,183.1,398.1%22/%3E %3Cpath fill=%22%2300756d%22 d=%22M159.8,233.3l13.4,10.8c16.2,13.1,29.8,18.9,43.9,18.9c0.5,0,0.9,0,1.3,0.1h322.3 c-0.8-16.4-3.2-32.3-6.8-47.8H305.1c-43.4,0-77.4-23.2-99.1-40.6l-22.9-18.3c-25.9-20.8-45.6-34.4-81.5-34.4H55.2 c-18.3,25.7-32.2,54.8-40.6,86.2h83.6C126.3,208.2,142.7,219.6,159.8,233.3%22/%3E %3C/svg%3E") currentColor 0 / contain no-repeat;
+                width: 7.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .loginTitleText {
+                height: 2.6rem;
+                padding-left: 18px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 320px) /*and (max-height: 580px) */ /* iPhone 5/SE */ {
+            #email_intro,
+            #email_info {
+                font-size: 0.8rem;
+                color: #1d1655;
+                font-family: benton-sans-condensed, sans-serif;
+                display: block;
+                padding-bottom: 5px !important;
+            }
+
+            #continue {
+                margin-right: 6px;
+            }
+        }
+
+        @media (min-width: 321px) and (max-width: 380px) /*iphone 6/7/8*/ {
+            #email_intro,
+            #email_info {
+                font-size: 0.9rem;
+                color: #1d1655;
+                font-family: benton-sans-condensed, sans-serif;
+                display: block;
+                padding-bottom: 5px !important;
+            }
+
+            #continue {
+                margin-right: 6px;
+            }
+        }
+
+        .form .up {
+            transform: translateY(-180px);
+        }
+
+        #email_intro,
+        #email_info {
+            color: #1d1655;
+            font-family: benton-sans-condensed, sans-serif;
+            display: block;
+            font-size: 1rem;
+            padding-bottom: 5px !important;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #email_label {
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+        .clsHidden {
+            display: none !important;
+        }
+
+        .clsShow {
+            display: table !important;
+        }
+
+        #forgotPassword {
+            display: none;
+        }
+
+        #email_ver_input_label {
+            width: 100%;
+        }
+
+        .MEDidentify {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+            .MEDidentify.MED {
+                color: #303584;
+            }
+
+            .MEDidentify.identify {
+                color: #03878c;
+            }
+
+        .app_name {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+            .app_name.primary {
+                color: #303584;
+            }
+
+            .app_name.secondary {
+                color: #03878c;
+            }
+
+        .app-name-narrow {
+            width: 175px;
+            max-width: 175px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .errorRedLabel {
+            color: red;
+            font-family: benton-sans-condensed, sans-serif;
+            font-size: 1rem;
+            padding-top: 40px;
+        }
+
+        #contextIPAddress {
+            display: none;
+        }
+
+        /* MFA */
+        .heading {
+            display: none;
+        }
+
+        .actionLabel {
+            font-family: benton-sans-condensed, sans-serif;
+            font-weight: 500;
+            color: #026e73;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* MFA Choice */
+        #extension_mfaByPhoneOrAuthApp_phone,
+        #extension_mfaByPhoneOrAuthApp_AuthApp {
+            box-shadow: none;
+            justify-self: flex-end;
+            min-height: 0;
+            margin-top: 0;
+            margin-right: 0.5rem;
+        }
+
+        #extension_mfaByPhoneOrAuthApp_phone {
+            margin-bottom: 1.5rem;
+        }
+
+        #extension_mfaByPhoneOrAuthApp_AuthApp {
+            margin-bottom: 2.5rem;
+        }
+
+        #phone_option,
+        #AuthApp_option {
+            color: #2c2c2e;
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 100%;
+        }
+
+        .mfaButtonGroup {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+            .mfaButtonGroup #continue {
+                width: 17.5rem;
+                margin-right: 0;
+            }
+
+            .mfaButtonGroup #cancel {
+                border: none;
+                color: #2c2c2e;
+                width: auto;
+
+                &:hover {
+                    outline: none;
+                }
+            }
+
+        #extension_mfaByPhoneOrAuthApp_label {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            display: inline-grid;
+        }
+
+        .RadioSingleSelect .attrEntry {
+            display: inline-grid;
+            grid-template-columns: min-content auto;
+        }
+
+        .RadioSingleSelect .error {
+            display: none;
+        }
+
+        /* MFA Phone */
+        .phoneNumber {
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .code label,
+        .number label {
+            margin-bottom: 15px;
+        }
+
+        #verifyPhone {
+            margin: 0px 10px;
+        }
+
+        /* MFA Authenticator */
+
+        #QrCodeScanInstruction_label,
+        .qrCodeInfo,
+        .qrCodeControlContent a {
+            display: none;
+        }
+
+        #totpQrCodeControl-title {
+            margin-bottom: 10px;
+        }
+
+        #totpQrCodeControl-picture {
+            display: flex;
+            justify-content: center;
+        }
+
+            #totpQrCodeControl-picture img {
+                width: 8.5rem;
+                height: 8.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+        .changeClaims {
+            visibility: hidden;
+        }
+
+        .disableContinue {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .additionalInfo,
+        .verificationInfo,
+        #QrCodeVerifyInstruction_label {
+            font-size: 0.875rem;
+            color: #65666c;
+            font-weight: 400;
+            line-height: 140%;
+            margin-block: 0.5rem;
+        }
+
+        .otpCode_li {
+            margin-block: 2.5rem;
+        }
+
+        .centerStyles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .verificationInfo {
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+
+            @media screen and (min-width: 48rem) {
+                margin-bottom: 2.5rem;
+            }
+
+            @media screen and (min-width: 80rem) {
+                margin-bottom: 2rem;
+            }
+
+            @media screen and (min-width: 96rem) {
+                margin-bottom: 2.5rem;
+            }
+        }
+
+        .pwdResetLabel {
+            color: #2c2c2e;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 115%;
+            margin-bottom: 0.5rem;
+        }
+
+        .pwdResetBtnGroup {
+            position: relative;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 1rem;
+        }
+
+        .pwdResetBtnGroup.initial-reset-layout #email_ver_but_send,
+        .pwdResetBtnGroup.initial-reset-layout #passwordResetEmailVerificationControl_but_send_code {
+            margin-top: clamp(0.75rem, 1.5vw, 1rem);
+        }
+
+        .backToSignIn {
+            padding-block: 0.375rem;
+            color: #2c2c2e;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 150%;
+            letter-spacing: -0.00875rem;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                text-decoration-color: #0005f8;
+                text-decoration-thickness: 0.125rem;
+                text-underline-offset: 0.125rem;
+            }
+
+            &:focus-visible {
+                border-radius: 0.5rem;
+                outline: 0.125rem solid #6f72ff;
+            }
+
+            &:active {
+                color: #0005f8;
+            }
+        }
+
+        .backToSignIn,
+        .backToSignInVerify {
+            display: block;
+            letter-spacing: -0.0088rem;
+            cursor: pointer;
+        }
+
+        #email_ver_but_send {
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin: 0;
+        }
+
+        .verify-input,
+        .verifyCodeLabel {
+            width: 100%;
+            display: block !important;
+        }
+
+        .verify-code-label-spacing {
+            margin-top: clamp(1.25rem, 2vw, 1.5rem);
+        }
+
+        .codeSentAdditionalInfo {
+            margin-bottom: 2.5rem;
+            margin-top: 0.875rem;
+        }
+
+        .verifycodeBtn {
+            display: block;
+            margin: auto;
+            margin-top: 0.5rem;
+            opacity: 1 !important;
+        }
+
+        .original-resend-code-btn,
+        #emailVerificationControl_but_send_new_code,
+        #passwordResetEmailVerificationControl_but_send_new_code,
+        .verificationInfoText,
+        #email_ver_but_edit {
+            display: none !important;
+        }
+
+        .buttonWrapper {
+            display: flex;
+            gap: 1.5rem;
+
+            .text-link-group {
+                width: auto;
+            }
+
+            .resend-code-btn {
+                background: none;
+                padding: 0;
+                padding-block: 0.375rem;
+                border-radius: unset;
+                margin-top: 1rem;
+                font-weight: 600;
+                width: auto;
+                opacity: 1 !important;
+
+                &:hover {
+                    color: #2c2c2e;
+                }
+
+                &:focus-visible {
+                    color: #2c2c2e;
+                }
+            }
+        }
+
+        .alert-box {
+            position: absolute !important;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0 !important;
+            display: none;
+            flex-direction: column;
+            border: 0.0625rem solid #65666c;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            background-color: #ecebe4;
+            z-index: 100;
+        }
+
+        .alert-box {
+            @media screen and (min-width: 20rem) {
+                max-width: 85vw;
+            }
+
+            @media screen and (min-width: 48rem) {
+                max-width: 45rem;
+            }
+
+            @media screen and (min-width: 80rem) {
+                max-width: 65.5rem;
+            }
+
+            @media screen and (min-width: 96rem) {
+                max-width: 76rem;
+            }
+        }
+
+        .alert-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .alert-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .alert-message {
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 140%;
+            color: #2c2c2e;
+            margin: 0;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            padding: 0;
+
+            &:focus-visible {
+                background-color: unset;
+            }
+        }
+
+            .close-button:hover {
+                background: none;
+            }
+
+        .alertInfo,
+        .alert-timestamp {
+            margin: 0.375rem 0 0.75rem 0;
+            color: #65666c;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+        }
+
+        .alert-timestamp {
+            color: #65666c;
+            letter-spacing: 0.035rem;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .verify-input {
+            display: "none" !important; /* Important override required due to inline style*/
+        }
+
+        .disabledField {
+            background-color: #f8f8f8;
+            border-color: #ecebe4;
+        }
+
+        .fullWidthForm {
+            width: 45rem;
+
+            @media screen and (min-width: 48rem) {
+                width: 50rem;
+            }
+
+            .intro {
+                width: 21.5rem;
+                margin: auto;
+
+                @media screen and (min-width: 80rem) {
+                    width: 20.5rem;
+                }
+
+                @media screen and (min-width: 96rem) {
+                    width: 24rem;
+                }
+            }
+
+            .Password {
+                margin-bottom: 2.5rem;
+            }
+        }
+
+        .backToSignInLink {
+            border: none !important;
+            color: unset !important;
+            background-color: unset !important;
+            padding-block: 0;
+            width: auto;
+
+            &:hover {
+                outline: none !important;
+            }
+        }
+
+        .form-container {
+            display: flex;
+            max-width: 100%;
+            margin: auto;
+
+            @media screen and (max-width: 47.9375rem) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .showPassword {
+                right: 0.8rem;
+                bottom: 1.3rem;
+                top: unset;
+
+                @media screen and (min-width: 768px) {
+                    right: 2.2rem;
+                }
+
+                @media screen and (min-width: 1536px) {
+                    right: 0.8rem;
+                }
+            }
+
+            #attributeVerification,
+            .password-rules {
+                width: 50%; /* Each takes half of the 50rem container */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .password-rules {
+                border-left: 0.0625rem solid #8f9296;
+                padding-left: 2.5rem;
+                justify-content: flex-start;
+                align-items: flex-start;
+                font-weight: 400;
+                line-height: 140%;
+                width: 21.5rem;
+
+                @media screen and (min-width: 96rem) {
+                    width: 24rem;
+                }
+
+                @media screen and (max-width: 47.9375rem) {
+                    width: 21.5rem;
+                    border-left: 0;
+                    border-top: 0.0625rem solid #8f9296;
+                    padding-left: 0;
+                    padding-top: 1.25rem;
+                }
+            }
+
+            .passwordRulesHeader {
+                color: #2c2c2e;
+                font-size: 1.125rem;
+                margin-bottom: 1rem;
+                font-weight: 400;
+                line-height: 140%;
+            }
+
+            .rule-item,
+            .sub-rule-item {
+                color: #65666c;
+                font-size: 0.875rem;
+                margin-bottom: 0.25rem;
+                display: flex;
+                flex-wrap: wrap;
+                font-weight: 400;
+                line-height: 140%;
+            }
+
+            .rule-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .sub-rules {
+                display: flex;
+                flex-direction: column;
+                margin-top: 0.25rem;
+                margin-left: 2rem;
+
+                .sub-rule-item {
+                    display: flex;
+                    flex-wrap: nowrap;
+                }
+            }
+
+            .attrEntry {
+                margin-left: 0;
+
+                @media screen and (min-width: 80rem) {
+                    margin-left: 1.25rem;
+                }
+
+                @media screen and (max-width: 47.999rem) {
+                    margin-left: -2.1875rem;
+                }
+            }
+
+            #attributeVerification {
+                padding: 0;
+                margin-right: 2rem;
+
+                @media screen and (max-width: 44.9375rem) {
+                    margin-right: 0;
+                }
+
+                .buttons {
+                    flex-direction: column;
+                    margin-bottom: 1.25rem;
+                    margin-left: 2.5rem;
+
+                    @media screen and (max-width: 47.9375rem) {
+                        margin-left: 0.5rem;
+                    }
+
+                    #continue {
+                        margin-right: 0;
+                        width: 17.5rem;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+
+            #attributeList {
+                width: 100%;
+                margin: auto;
+
+                @media screen and (max-width: 47.9375rem) {
+                    width: 21.5rem;
+                }
+            }
+
+            ul {
+                @media screen and (min-width: 96rem) {
+                    padding: 0;
+                }
+            }
+
+            input {
+                width: 21.5rem;
+
+                @media screen and (min-width: 80rem) {
+                    width: 20rem;
+                }
+
+                @media screen and (min-width: 96rem) {
+                    width: 24rem;
+                }
+            }
+        }
+
+        .change-password-header {
+            margin-top: 0;
+        }
+
+        .phoneAuthenticationHeading {
+            margin-bottom: 0.5rem;
+        }
+
+        .phoneValidationBtnGroup {
+            margin-top: 2.5rem;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+            .phoneValidationBtnGroup .phoneBtns {
+                display: flex;
+                gap: 1.5rem;
+
+                button {
+                    width: auto;
+                    background-color: transparent;
+                    padding: 0;
+
+                    &:hover,
+                    &:focus-visible {
+                        color: #2c2c2e;
+                    }
+                }
+            }
+
+        .phone-input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 0.0625rem solid #8f9296;
+            border-radius: 0.5rem;
+            background-color: white;
+            max-width: 24rem;
+            position: relative;
+
+            .error-message {
+                position: absolute;
+                top: 3.625rem;
+            }
+        }
+
+        .country-select {
+            border: none;
+            background: none;
+            width: auto;
+            padding: 0;
+            margin: 0;
+            max-width: 1.875rem;
+            box-shadow: none;
+            font-size: 1rem;
+        }
+
+        .phone-number-input {
+            border: none;
+            flex: 1;
+            font-size: 1rem;
+            margin: 0;
+            padding-inline: 0;
+
+            &:focus-visible {
+                border: none;
+            }
+        }
+
+            .country-select:focus,
+            .phone-number-input:focus {
+                outline: none;
+            }
+
+        .select-wrapper {
+            display: flex;
+            margin-inline: 0.5rem;
+            align-items: center;
+        }
+
+        .authenticatorHeading {
+            margin-bottom: 0.875rem;
+        }
+
+        .authenticatorDescription {
+            color: #65666c;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+            margin: 0;
+            margin-bottom: 2.5rem;
+        }
+
+        #authenticatorAppIconControl-title,
+        #authenticatorAppIconControl-instruction {
+            display: block;
+            color: #65666c;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+        }
+
+        #authenticatorAppIconControl-instruction {
+            margin-block: 2.5rem;
+        }
+
+        .playStoreContainer {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        #authenticatorAppIconControl-google img {
+            width: 9.625rem !important;
+            float: none !important;
+            position: relative;
+            top: -0.5625rem;
+        }
+
+        #authenticatorAppIconControl-apple img {
+            width: 7.5rem !important;
+            float: none !important;
+            margin-top: 0 !important;
+        }
+
+        #authenticatorInfoControl {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        #authenticatorInfoControl-collapse_text {
+            color: #65666c;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+
+            &:hover,
+            &:focus-visible {
+                color: #0004fa;
+            }
+        }
+
+        .columnFlexButtons {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+            .columnFlexButtons #continue {
+                margin-right: 0;
+                width: 17.5rem;
+            }
+
+            .columnFlexButtons #cancel {
+                color: #2c2c2e;
+                border: none;
+                width: auto;
+
+                &:hover {
+                    outline: none;
+                    text-decoration: underline;
+                    text-decoration-color: #0005f8;
+                    text-decoration-thickness: 0.125rem;
+                    text-underline-offset: 0.125rem;
+                }
+            }
+
+        #authenticatorInfoControl-title {
+            color: #65666c;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+            margin-bottom: 1rem;
+        }
+
+        #authenticatorInfoControl-account_name,
+        #authenticatorInfoControl-secret {
+            color: #2c2c2e;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+            display: flex;
+            gap: 1rem;
+        }
+
+        #authenticatorInfoControl-account_name {
+            margin-bottom: 0.25rem;
+            line-break: anywhere;
+        }
+
+        .labelDiv {
+            min-width: 6.125rem;
+        }
+
+        .error-message {
+            display: flex;
+            margin: 0;
+            margin-top: 0.5rem;
+            gap: 0.25rem;
+            color: #7f0d03;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 140%;
+        }
+
+        .error-showPassword {
+            bottom: 3rem !important;
+        }
+
+        .verificationCode {
+            margin-bottom: 2.5rem;
+        }
+
+        .verify-code-input-spacing {
+            margin-bottom: clamp(1.5rem, 2.5vw, 1.875rem);
+        }
+
+        .verifyCode {
+            width: 17.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pwdResetBtnGroup.verify-code-layout .verifycodeBtn {
+            margin-top: 0;
+            margin-bottom: clamp(1rem, 2vw, 1.25rem);
+        }
+
+        .pwdResetBtnGroup.verify-code-layout .buttonWrapper {
+            margin-top: 0;
+        }
+
+        .pwdResetBtnGroup.verify-code-layout .buttonWrapper .resend-code-btn,
+        .pwdResetBtnGroup.verify-code-layout .buttonWrapper .text-link-group {
+            margin-top: 0;
+        }
+
+        .successTextMigration,
+        #email_success,
+        #emailVerificationControl_success_message,
+        #passwordResetEmailVerificationControl_success_message,
+        .verificationSuccessText,
+        .working {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .errorElement {
+            .showPassword {
+                bottom: 3rem;
+            }
+        }
+
+        #email_ver_but_resend,
+        #email_ver_but_verify,
+        #passwordResetEmailVerificationControl_but_send_new_code,
+        #passwordResetEmailVerificationControl_but_verify_code {
+            opacity: 0;
+        }
+
+        .country-dropdown {
+            position: relative;
+            font-family: Inter;
+        }
+
+        .country-dropdown-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            padding: 0;
+            color: #2c2c2e;
+            gap: 0;
+
+            &:hover,
+            &:focus-visible {
+                background-color: unset;
+                color: unset;
+            }
+        }
+
+        .country-dropdown-toggle {
+            padding: 0.625rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .country-dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 0.0625rem solid #ccc;
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            width: max-content;
+            font-size: 0.875rem;
+            color: rgb(45, 45, 47);
+            border-radius: 0.5rem;
+        }
+
+            .country-dropdown-options.show {
+                display: block;
+            }
+
+        .country-dropdown-option {
+            padding: 0.625rem;
+            cursor: pointer;
+        }
+
+            .country-dropdown-option:hover {
+                background: #f0f0f0;
+            }
+
+        .signInButtonGroup {
+            flex-direction: column;
+            gap: 1rem;
+
+            #continue {
+                margin-right: 0;
+            }
+        }
+
+        #continue, #next, #email_ver_but_send, #emailVerificationControl_but_send_code, #email_ver_but_verify, #emailVerificationControl_but_verify_code, #passwordResetEmailVerificationControl_but_send_code, #passwordResetEmailVerificationControl_but_verify_code {
+            color: hsla(239,45%,40%,1) !important;
+            background: #fff !important
+        }
+
+            #continue:hover, #next:hover, #email_ver_but_send:hover, #emailVerificationControl_but_send_code:hover, #email_ver_but_verify:hover, #emailVerificationControl_but_verify_code:hover, #passwordResetEmailVerificationControl_but_send_code:hover, #passwordResetEmailVerificationControl_but_verify_code:hover {
+                background: hsla(239,45%,40%,1) !important;
+                color: #fff !important
+            }
+
+        .padded-error-message {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        console.log("Inside Document ready.");
+        setTimeout(() => {
+          document.title = "Login | InmarOne";
+          document.getElementById("year").innerHTML = new Date().getFullYear();
+          if (document.getElementById("email_label")) {
+            document.getElementById("email_label").innerHTML = "";
+          }
+          if (document.querySelector("label[for=signInName]")) {
+            document.querySelector("label[for=signInName]").textContent =
+              "Email Address";
+          }
+          if (document.querySelector("label[for=email]")) {
+            document.querySelector("label[for=email]").textContent = "";
+          }
+
+          //Update header text and add description under header
+          const passwordStepHeader =
+            document.querySelector('h2[aria-level="1"]');
+          if (passwordStepHeader) {
+            passwordStepHeader.textContent = "Enter your password";
+            passwordStepHeader.classList.add("heading-xl");
+            const description = document.createElement("p");
+            description.textContent =
+              "Enter your password to securely access insights and healthcare tools.";
+            description.classList.add("description");
+
+            passwordStepHeader.insertAdjacentElement("afterend", description);
+          }
+
+          if (document.getElementById("email")) {
+            document
+              .getElementById("email")
+              .setAttribute("placeholder", "Email");
+          }
+          if (document.getElementById("signInName")) {
+            document
+              .getElementById("signInName")
+              .setAttribute("placeholder", "Email/UserName");
+            var uName = document.getElementById("signInName").value;
+            setCookie("login_hint", uName, 5);
+            if (uName != "" && !uName.includes("@")) {
+              if (document.getElementById("forgotPassword")) {
+                var link = document.getElementById("forgotPassword");
+                link.setAttribute("href", "#");
+                link.setAttribute("onclick", "displayMsg()");
+              }
+            }
+          }
+          if (document.getElementById("errorMessage")) {
+            console.log("Inside User disabled error.");
+            const disabledUserMsg = document
+              .getElementById("errorMessage")
+              .getAttribute("aria-label");
+
+            if (disabledUserMsg && disabledUserMsg !== "") {
+              // Clear intro paragraph for all error types
+              $(".intro > p").html("");
+
+              const errorMessage = document.getElementById("errorMessage");
+
+              if (disabledUserMsg.includes("disabled") || disabledUserMsg.includes("enable your account")) {
+                errorMessage.classList.add("errorRedLabel");
+              } else if (disabledUserMsg.includes("IsIdPFederatedUser_Message")) {
+                // Handle Federated User Error Message
+                const heading = document.createElement("h2");
+                heading.className = "heading-xl";
+                heading.textContent = "Sign in via Your Company's Portal";
+
+                const intro = document.querySelector(".intro");
+                if (intro) {
+                  intro.appendChild(heading);
+                }
+
+                errorMessage.textContent = 'Your organization uses its own login system. To continue, sign in through your company\'s portal, then return to InmarOne.';
+                errorMessage.classList.remove("textInParagraph");
+                errorMessage.classList.add("description", "padded-error-message");
+              }
+            }
+          }
+
+          //Add show/hide password icon buttons by passing ids
+          addShowPasswordToggle("password");
+          addShowPasswordToggle("newPassword");
+          addShowPasswordToggle("reenterPassword");
+
+          //Disable email input fiels for password screen
+          const signInNameInput = document.querySelector(".entry #signInName");
+          if (signInNameInput) {
+            signInNameInput.setAttribute("disabled", "disabled");
+          }
+
+          //Update Sign in button text to "Continue"
+          const signInButton = document.getElementById("next");
+          if (signInButton) {
+            signInButton.textContent = "Continue";
+            signInButton.onclick = () => {
+              let count = 0;
+              const interval = setInterval(() => {
+                count++;
+
+                if (count >= 4) {
+                  clearInterval(interval);
+                }
+              }, 500);
+            };
+          }
+
+          const forgotPassword = document.getElementById("forgotPassword");
+          const forgotPasswordLink =
+            document.getElementById("forgotPasswordLink");
+          const switchAccountLink =
+            document.getElementById("switchAccountLink");
+
+          if (forgotPassword) {
+            //Update the forgot password link at its new position
+            if (forgotPasswordLink) {
+              forgotPasswordLink.classList.remove("clsHidden");
+              const linkAddress =
+                document.getElementById("forgotPassword")?.href ?? "/";
+              forgotPasswordLink.href = linkAddress;
+            }
+
+            if (switchAccountLink) {
+              switchAccountLink.classList.remove("clsHidden");
+              switchAccountLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.history.back();
+                return false;
+              });
+            }
+          } else {
+            forgotPasswordLink.classList.add("clsHidden");
+            switchAccountLink.classList.add("clsHidden");
+          }
+          setupAlertLayout();
+          updateFirstSignInPage();
+          setButtonDefaultLogic();
+          updatePasswordResetStyles();
+          updateCreatePasswordStyles();
+          changeMigrationContinueBtnStatus(true);
+          setInterval(checkVerificationStatus, 1000);
+          updateScanScreenStyles();
+          updateAuthenticationStyles();
+          updateMigrationStyles();
+          updateVerificationScreen();
+          updatePhoneNumberAuthentication();
+          updateSetPasswordStyles();
+
+          // Rules for field validation using ids
+          const fieldConfigs = [
+            {
+              ids: ["signInName", "email"],
+              validate: (value) => {
+                const emailRegex =
+                  /^[a-zA-Z0-9.!#%&'+^_`{}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
+                return (
+                  value.length >= 4 &&
+                  value.length <= 100 &&
+                  emailRegex.test(value)
+                );
+              },
+              errorText: "Enter a valid email address (4–100 characters).",
+              errorClass: ["email-error-message"],
+            },
+            {
+              ids: ["password", "confirmPassword"],
+              validate: (value) => value.length >= 8 && value.length <= 16,
+              errorText: "Password must be 8–16 characters long.",
+              errorClass: ["password-error-message"],
+            },
+            {
+              ids: ["email_ver_input", "passwordResetEmailVerificationControl_verificationCode"],
+              validate: (value) => /^\d{6}$/.test(value),
+              errorText: "Enter a valid 6-digit verification code.",
+              errorClass: ["email-error-message"],
+            },
+          ];
+
+          /** Setup validation for each field group */
+          fieldConfigs.forEach(({ ids, validate, errorText, errorClass }) => {
+            ids.forEach((id) => {
+              const input = document.getElementById(id);
+              if (!input) return;
+
+              const errorMsg = createErrorMessage(errorText, errorClass);
+              appendErrors(input, [errorMsg]);
+
+              let touched = false;
+
+              input.addEventListener("blur", () => {
+                const trimmed = input.value.trim();
+                if (!trimmed) {
+                  touched = false;
+                  toggleError(errorMsg, false);
+                  updateBorderColor(input, false);
+                  return;
+                }
+
+                touched = true;
+                toggleError(errorMsg, !validate(trimmed));
+                updateBorderColor(input, !validate(trimmed));
+              });
+
+              input.addEventListener("input", () => {
+                const trimmed = input.value.trim();
+                if (!trimmed) {
+                  touched = false;
+                  toggleError(errorMsg, false);
+                  updateBorderColor(input, false);
+                  return;
+                }
+
+                toggleError(errorMsg, touched && !validate(trimmed));
+                updateBorderColor(input, touched && !validate(trimmed));
+              });
+            });
+          });
+
+          handleFederatedUserMessage();
+        });
+        var appName = getAppParameterFromUrl("AppName");
+        if (appName != null) {
+          console.log("AppName found in URL : " + appName);
+          setTimeout(() => {
+            document.getElementById("appName").innerHTML =
+              getAppNameInnerHTML(appName);
+            document.getElementById("tdAppName").classList.add("tdDivider");
+            setCookie("appName", appName);
+            console.log("AppName set from URL : " + appName);
+          });
+        } else {
+          appName = getCookie("appName");
+          if (appName && !isNewAppLogin()) {
+            console.log("AppName found in cookie : " + appName);
+            setTimeout(() => {
+              document.getElementById("appName").innerHTML =
+                getAppNameInnerHTML(appName);
+              document.getElementById("tdAppName").classList.add("tdDivider");
+            });
+            console.log("AppName set from cookie : " + appName);
+          } else {
+            setTimeout(() => {
+              document.getElementById("tdAppName").style = "helpLink";
+              setCookie("appName", "", 0);
+            });
+          }
+        }
+
+        if (appName == null || appName.trim() == "") {
+          console.log("Inside dynamic logo. Appname " + appName);
+          setTimeout(() => {
+            document.getElementById("centerHeaderImg").classList.add("clsShow");
+            document
+              .getElementById("headerImgTable")
+              .classList.add("clsHidden");
+          });
+        } else {
+          console.log(
+            "Inside dynamic logo, appname not null. Appname :" + appName
+          );
+          setTimeout(() => {
+            document.getElementById("headerImgTable").classList.add("clsShow");
+            document
+              .getElementById("centerHeaderImg")
+              .classList.add("clsHidden");
+          });
+        }
+      });
+
+      // Handle federated user message replacement and intro hiding
+      function handleFederatedUserMessage() {
+            // Look for the paragraph with id="errorMessage"
+            var errorMsg = document.getElementById('errorMessage');
+            if (!errorMsg) return;
+
+            // Get the message from aria-label or text content
+            var errorText = (errorMsg.getAttribute('aria-label') || errorMsg.textContent || '').trim();
+            if (!errorText) return;
+
+            // Check if this is the federated user placeholder
+            if (errorText === 'IsIdPFederatedUser_Message') {
+                // Replace the placeholder with the actual message
+                var actualMessage = 'Your organization uses its own login system. To continue, sign in through your company\'s portal, then return to InmarOne.';
+                errorMsg.textContent = actualMessage;
+                if (errorMsg.hasAttribute('aria-label')) {
+                    errorMsg.setAttribute('aria-label', actualMessage);
+                }
+
+                // Hide the intro div
+                var container = document.getElementById('container');
+                if (container) {
+                    container.classList.add('hide-intro-for-federated');
+                }
+                console.log('Federated user message displayed and intro hidden');
+            }
+      }
+
+      function setupAlertLayout() {
+        const alertBox = document.getElementById("alertBox");
+        const container = document.querySelector(".container");
+        if (!alertBox || !container) return;
+
+        const syncAlertLayout = () => {
+          const isVisible = window.getComputedStyle(alertBox).display !== "none";
+          container.classList.toggle("has-alert", isVisible);
+
+          if (!isVisible) {
+            document.documentElement.style.removeProperty("--alert-clearance");
+            return;
+          }
+
+          const clearance = alertBox.offsetTop + alertBox.offsetHeight;
+          document.documentElement.style.setProperty("--alert-clearance", `${clearance}px`);
+        };
+
+        const observer = new MutationObserver(() => {
+          window.requestAnimationFrame(syncAlertLayout);
+        });
+
+        observer.observe(alertBox, {
+          attributes: true,
+          attributeFilter: ["style", "class"],
+        });
+
+        window.addEventListener("resize", syncAlertLayout);
+        window.requestAnimationFrame(syncAlertLayout);
+      }
+
+      //Function to show password view/hide toggle button
+      function addShowPasswordToggle(inputId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        // Check if a toggle button already exists for this input
+        if (document.querySelector(`.showPassword-${inputId}`)) return;
+
+        // Create the toggle button element
+        const toggleButton = document.createElement("button");
+        toggleButton.type = "button"; // Prevent form submission
+        toggleButton.classList.add("showPassword", `showPassword-${inputId}`);
+        toggleButton.setAttribute("aria-label", "show password");
+
+        // Define SVG icons for "eye open" (show password)
+        const eyeOpenIcon = `<svg fill="#2c2c2e" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6.06943 7.72219c1.49653-1.38888 3.48611-2.49999 5.93057-2.49999 2.4444 0 4.434 1.11111 5.9305 2.49999 1.4966 1.38889 2.4966 3.05561 2.9584 4.16671-.4618 1.1111-1.4618 2.7777-2.9584 4.1666-1.4965 1.3889-3.4861 2.5-5.9305 2.5-2.44446 0-4.43404-1.1111-5.93057-2.5s-2.49653-3.0555-2.95833-4.1666c.4618-1.1111 1.4618-2.77782 2.95833-4.16671zm5.93057-3.61111c-2.80557 0-5.0521 1.27778-6.68751 2.79861-1.625 1.50695-2.71181 3.31251-3.2257 4.55211-.11458.2743-.11458.5798 0 .8541.51389 1.2396 1.6007 3.0452 3.2257 4.5521 1.63541 1.5209 3.88194 2.7986 6.68751 2.7986 2.8055 0 5.0521-1.2777 6.6875-2.7986 1.625-1.5104 2.7118-3.3125 3.2292-4.5521.1145-.2743.1145-.5798 0-.8541-.5174-1.2396-1.6042-3.04516-3.2292-4.55211-1.6354-1.52083-3.882-2.79861-6.6875-2.79861zm-3.33335 7.77782c0-.8841.35119-1.7319.97631-2.35706.62514-.62512 1.47294-.97631 2.35704-.97631.884 0 1.7319.35119 2.357.97631.6251.62516.9763 1.47296.9763 2.35706 0 .884-.3512 1.7319-.9763 2.357s-1.473.9763-2.357.9763c-.8841 0-1.7319-.3512-2.35704-.9763-.62512-.6251-.97631-1.473-.97631-2.357zm7.77775 0c0-1.1788-.4682-2.30924-1.3017-3.14274-.8335-.83349-1.964-1.30174-3.1427-1.30174-1.1788 0-2.30922.46825-3.14271 1.30174-.83349.8335-1.30175 1.96394-1.30175 3.14274 0 1.1787.46826 2.3092 1.30175 3.1427s1.96391 1.3017 3.14271 1.3017c1.1787 0 2.3092-.4682 3.1427-1.3017s1.3017-1.964 1.3017-3.1427z" /></svg>`;
+        // Define SVG icons for "eye closed" (hide password)
+        const eyeClosedIcon = `<svg fill="#2c2c2e" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m1.8904 3.3168c-.23719-.18562-.58437-.14437-.77344.09281-.189058.23719-.144371.58438.09282.77344l20.90002 16.50005c.2372.189.5844.1478.7734-.0894.1891-.2372.1478-.5844-.0894-.7735zm19.9238 9.1059c.1134-.2715.1134-.574 0-.8456-.5122-1.2272-1.5882-3.01467-3.1969-4.50655-1.6156-1.50562-3.8397-2.77062-6.6172-2.77062-1.76 0-3.30001.50875-4.60282 1.265l.93843.73906c1.0725-.55344 2.29629-.90406 3.66439-.90406 2.42 0 4.3897 1.1 5.8712 2.475 1.4816 1.375 2.4716 3.02497 2.9288 4.12497-.3163.7597-.8903 1.7875-1.7016 2.8016l.8628.6806c.88-1.1 1.5022-2.2137 1.8529-3.0594zm-17.77536-3.90496c-.88 1.1-1.50219 2.21376-1.85281 3.05936-.11344.2716-.11344.5741 0 .8456.51218 1.2272 1.58812 3.0147 3.19687 4.5066 1.61563 1.5056 3.83969 2.7706 6.6172 2.7706 1.76 0 3.3-.5087 4.6028-1.265l-.9384-.739c-1.0725.5534-2.2963.904-3.6644.904-2.42001 0-4.3897-1.1-5.87126-2.475s-2.47156-3.025-2.92875-4.125c.31625-.7597.89031-1.7875 1.70156-2.80154zm7.96126 7.88216c.5741 0 1.1241-.11 1.6294-.3128l-1.0622-.8387c-.1856.0309-.3747.0481-.5672.0481-1.7531 0-3.19001-1.3681-3.29314-3.0972l-1.06218-.8387c-.03094.2062-.04469.4193-.04469.6359 0 2.4303 1.96969 4.4 4.40001 4.4zm4.4-4.4c0-2.43029-1.9697-4.39997-4.4-4.39997-.5741 0-1.1241.11-1.6294.31281l1.0622.83875c.1856-.03094.3747-.04813.5672-.04813 1.7531 0 3.19 1.36814 3.2931 3.09724l1.0622.8387c.0309-.2062.0447-.4194.0447-.6359z" /></svg>`;
+
+        toggleButton.innerHTML = eyeOpenIcon;
+        input.insertAdjacentElement("afterend", toggleButton);
+
+        // Add click event listener to toggle visibility
+        toggleButton.addEventListener("click", () => {
+          if (input.type === "password") {
+            // Switch to text input to reveal password
+            input.type = "text";
+            toggleButton.innerHTML = eyeClosedIcon;
+            toggleButton.setAttribute("aria-label", "hide password");
+          } else {
+            // Switch back to password input to hide password
+            input.type = "password";
+            toggleButton.innerHTML = eyeOpenIcon;
+            toggleButton.setAttribute("aria-label", "show password");
+          }
+        });
+      }
+
+      /**
+       * Customizes the first sign-in screen UI when certain conditions are met.
+       * Conditions:
+       * - The email input is present.
+       * - 'Forgot Password' and 'Switch Account' links are hidden.
+       * - The page is not already showing the standard "Forgot your password?" header.
+       */
+      function updateFirstSignInPage() {
+        const signInName = document.getElementById("signInName");
+        const switchAccountLink = document.getElementById("switchAccountLink");
+        const forgotPasswordLink =
+          document.getElementById("forgotPasswordLink");
+        const forgotPwd = document.querySelector(".resetPwdHeader");
+        // Check if we are on the first sign-in screen
+        if (
+          signInName &&
+          forgotPasswordLink?.classList?.contains("clsHidden") &&
+          switchAccountLink?.classList?.contains("clsHidden") &&
+          forgotPwd?.textContent !== "Forgot your password?"
+        ) {
+          const intro = document.querySelector(".intro");
+          let introInfo;
+          if (intro) introInfo = intro.querySelector("p");
+
+          const heading = document.createElement("h2");
+          if (heading) {
+            heading.textContent = "Welcome to Inmar";
+            heading.classList.add("heading-xl");
+          }
+          if (introInfo) {
+            introInfo.textContent = "Enter your email to get started";
+            introInfo.classList.add("description");
+          }
+          signInName.placeholder = "";
+          const attrEntry = document.querySelector(".attrEntry");
+          if (attrEntry) attrEntry.style.marginBottom = "2.5rem";
+          intro?.insertBefore(heading, introInfo ?? null);
+
+          const buttons = document.querySelectorAll(".buttons")?.[1];
+          buttons?.classList?.add("signInButtonGroup");
+          const cancel = document.getElementById("cancel");
+          cancel?.classList?.add("backToSignInLink");
+        }
+      }
+
+      //Function to update the styles for a mfa user to select the authentication method
+      function updateAuthenticationStyles() {
+        // Get the label element for MFA options
+        const mfaLabel = document.getElementById(
+          "extension_mfaByPhoneOrAuthApp_label"
+        );
+        if (!mfaLabel) return; // Exit early if not found
+
+        const intro = document.querySelector(".intro");
+        const introInfo = intro?.querySelector("p");
+
+        if (introInfo) introInfo.style.display = "none";
+
+        const heading = document.createElement("h1");
+        heading.textContent = "Let's verify it's you";
+        heading.classList.add("heading-xl", "authenticatorHeading")
+        intro?.insertBefore(heading, introInfo ?? null);
+
+        const description = document.createElement("p");
+        description.textContent = "Please select your preferred MFA method.";
+        description.className = "authenticatorDescription";
+        intro?.insertBefore(description, introInfo ?? null);
+
+        mfaLabel.style.display = "none";
+
+        const buttonGroup = document.querySelectorAll(".buttons")[1];
+        if (buttonGroup) buttonGroup.classList.add("mfaButtonGroup");
+
+        // Call helper function to add a "Back to sign in" link
+        setupBackToSignIn();
+      }
+
+      /**
+       * Customizes the QR code scanning screen UI during MFA setup.
+       *
+       * Conditions:
+       * - The authenticator title and instruction labels are present.
+       */
+      function updateScanScreenStyles() {
+        const titleLabel = document.getElementById(
+          "authenticatorAppIconControl-title"
+        );
+        const instructionLabel = document.getElementById(
+          "authenticatorAppIconControl-instruction"
+        );
+
+        if (titleLabel && instructionLabel) {
+          const formWrapper = document.querySelector(".form-wrapper");
+          formWrapper.style.width = "24rem";
+          instructionLabel.textContent =
+            "Once you’ve downloaded the Authenticator app, scan the QR code below to continue with enrollment.";
+          titleLabel.parentNode.insertBefore(
+            instructionLabel,
+            titleLabel.nextSibling
+          );
+
+          const intro = document.querySelector(".intro");
+          const introInfo = intro?.querySelector("p");
+          introInfo.style.display = "none";
+          const header = document.createElement("h1");
+          header.textContent = "Scan the QR code";
+          header.classList.add("heading-xl", "authenticatorHeading");
+          intro?.insertBefore(header, introInfo ?? null);
+
+          const googleLink = document.getElementById(
+            "authenticatorAppIconControl-google"
+          );
+          const appleLink = document.getElementById(
+            "authenticatorAppIconControl-apple"
+          );
+
+          if (googleLink && appleLink) {
+            const flexContainer = document.createElement("div");
+            flexContainer.classList.add("playStoreContainer");
+
+            googleLink.parentNode.insertBefore(flexContainer, googleLink);
+
+            flexContainer.appendChild(googleLink);
+            flexContainer.appendChild(appleLink);
+          }
+          const scanText = document.getElementById("totpQrCodeControl-title");
+          scanText.style.display = "none";
+
+          const helpLink = document.getElementById(
+            "authenticatorInfoControl-collapse_text"
+          );
+          const authenticatorInfoControl = document.getElementById(
+            "authenticatorInfoControl"
+          );
+          helpLink.textContent = "Having trouble scanning this QR code?";
+          helpLink.onclick = () => {
+            updateStylesForAccountInfo();
+            authenticatorInfoControl.style.flexDirection = "column";
+          };
+          const buttons = document.querySelectorAll(".buttons")?.[1];
+          buttons.classList.add("columnFlexButtons");
+          const backBtn = document.getElementById("cancel");
+          backBtn.textContent = "Back";
+          backBtn.classList.add("backToSignIn");
+          const continueBtn = document.getElementById("continue");
+          continueBtn.onclick = () => {
+            //Call the helper function to continue on to the next screen to verify the code
+            updateVerificationScreen();
+          };
+        }
+      }
+
+      //Function to update the styles for a mfa user using authentcator app to verify the code
+      function updateVerificationScreen() {
+        const qrVerificationLabel = document.getElementById(
+          "QrCodeVerifyInstruction_label"
+        );
+        if (qrVerificationLabel) {
+          const container = document.getElementById("attributeList");
+          container.classList.add("centerStyles");
+          qrVerificationLabel.textContent =
+            "The code can be found in the authenticator app";
+          const intro = document.querySelector(".intro");
+          const introInfo = intro?.querySelector("p");
+          introInfo.style.display = "none";
+          const header = document.createElement("h1");
+          header.textContent = "Enter the verification code";
+          header.classList.add("heading-xl", "authenticatorHeading");
+          intro?.insertBefore(header, introInfo ?? null);
+          const otpCode = document.getElementById("otpCode");
+
+          if (otpCode) {
+            otpCode.placeholder = "";
+            const otpLabel = document.getElementById("otpCode_label");
+            otpLabel.style.display = "block";
+            otpLabel.textContent = "Verification Code";
+          }
+          const buttonGroup = document.querySelectorAll(".buttons")?.[1];
+          buttonGroup.classList.add("mfaButtonGroup");
+          const continueBtn = document.getElementById("continue");
+          continueBtn.textContent = "Continue";
+          const cancelBtn = document.getElementById("cancel");
+          cancelBtn.textContent = "Back";
+        }
+      }
+
+      // Function to show the account info in case the scan for authenticator app does not work (help link)
+      function updateStylesForAccountInfo() {
+        const accountInfo = document.getElementById("authenticatorInfoControl");
+        if (accountInfo) {
+          const accountDiv = document.getElementById(
+            "authenticatorInfoControl-account_name"
+          );
+
+          if (accountDiv) {
+            accountDiv.style.display = "flex";
+
+            const fullText = accountDiv.textContent.trim();
+            const [label, ...emailParts] = fullText.split(":");
+            const email = emailParts.join(":").trim();
+            accountDiv.textContent = "";
+            const labelDiv = document.createElement("div");
+            labelDiv.classList.add("labelDiv");
+            labelDiv.textContent = label;
+
+            const emailDiv = document.createElement("div");
+            emailDiv.textContent = email;
+
+            accountDiv.appendChild(labelDiv);
+            accountDiv.appendChild(emailDiv);
+          }
+          const secretDiv = document.getElementById(
+            "authenticatorInfoControl-secret"
+          );
+
+          if (secretDiv) {
+            secretDiv.style.display = "flex";
+
+            const fullText = secretDiv.textContent.trim();
+            const [label, ...secretParts] = fullText.split(" ");
+            const secret = secretParts.join(" ").trim();
+
+            secretDiv.textContent = "";
+
+            const labelDiv = document.createElement("div");
+            labelDiv.classList.add("labelDiv");
+            labelDiv.textContent = `${label} Code`;
+
+            const secretValueDiv = document.createElement("div");
+            secretValueDiv.textContent = secret;
+
+            secretDiv.appendChild(labelDiv);
+            secretDiv.appendChild(secretValueDiv);
+          }
+        }
+      }
+
+      //reset password screen 1: Enter your email and code will be sent to your mail
+      function updatePasswordResetStyles() {
+        const sendButton = document.getElementById("email_ver_but_send") || document.getElementById("passwordResetEmailVerificationControl_but_send_code");
+        if (sendButton && sendButton.style.display !== "none") {
+          document.title = "Reset Password | InmarOne";
+          window.scrollTo(0, 0);
+          const intro = document.querySelector(".intro");
+          const additionalInfo = intro?.querySelector("p");
+
+          additionalInfo?.classList.add("additionalInfo");
+          additionalInfo &&
+            (additionalInfo.textContent =
+              "Enter your email address. If your account is found, you’ll receive an email with a verification code to reset your password.");
+
+          const header = document.createElement("h1");
+          header.textContent = "Forgot your password?";
+          header.classList.add("heading-xl", "resetPwdHeader");
+
+          const verificationInfo = document.createElement("p");
+          verificationInfo.classList.add("verificationInfo");
+
+          intro?.insertBefore(header, additionalInfo ?? null);
+          additionalInfo?.insertAdjacentElement("afterend", verificationInfo);
+
+          const emailInput = document.getElementById("email");
+          const emailLabel = document.getElementById("email_label");
+          const buttonGroup = document.querySelector(".verify") || document.querySelector("#passwordResetEmailVerificationControl .buttons") || document.querySelector(".buttons");
+          if (emailInput) emailInput.value = getCookie("login_hint");
+
+          const cancelButton = document.getElementById("cancel");
+          const verifyBtn = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+          if (verifyBtn) verifyBtn.style.display = "none";
+          const helpLink = document.querySelector(".helpLink");
+          if (buttonGroup) buttonGroup.classList.add("pwdResetBtnGroup", "initial-reset-layout");
+          if (sendButton.style.display === "none") {
+            verificationInfo.style.display = "none";
+            additionalInfo.style.display = "none";
+          } else {
+            verificationInfo.style.display = "block";
+            additionalInfo.style.display = "block";
+          }
+
+          emailInput?.classList.add("resetPwdInput");
+          emailInput?.setAttribute("placeholder", "");
+          emailLabel?.classList.add("pwdResetLabel");
+          emailLabel && (emailLabel.textContent = "Email Address");
+
+          sendButton.textContent = "Continue";
+          cancelButton?.style.setProperty("display", "none");
+
+          const verifyBtn2 = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+          if (verifyBtn2) verifyBtn2.style.display = "none";
+
+          const textLinkGroup = document.createElement("div");
+          textLinkGroup.classList.add("text-link-group");
+
+          const backToSignIn = document.createElement("a");
+          backToSignIn.textContent = "Back To Sign In";
+          if (backToSignIn) {
+            backToSignIn.tabIndex = 0;
+          }
+          backToSignIn.classList.add("backToSignIn");
+          backToSignIn.onclick = (event) => {
+            event.preventDefault();
+            cancelButton?.click();
+          };
+          textLinkGroup.appendChild(backToSignIn);
+          sendButton.insertAdjacentElement("afterend", textLinkGroup);
+
+          const helpLink2 = document.querySelector(".helpLink");
+          if (helpLink2) helpLink2.style.setProperty("display", "none");
+        }
+      }
+
+      /**
+       * Returns the current date and time formatted in a user-friendly string.
+       *
+       * Format example: "Jun 23, 2025 | 01:45 PM"
+       *
+       * - Uses 'en-US' locale for formatting.
+       * - Date format: short month, 2-digit day, full year.
+       * - Time format: 2-digit hour and minute in 12-hour format with AM/PM.
+       */
+      function formatDate() {
+        const now = new Date();
+        const options = { month: "short", day: "2-digit", year: "numeric" };
+        const formattedDate = now.toLocaleDateString("en-US", options);
+        const formattedTime = now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+
+        return `${formattedDate} | ${formattedTime}`;
+      }
+
+      //reset password screen 2: Verification of the code received in mail.
+      function updateVerifyCodePasswordStyles() {
+        const verifyCodeBtnNav = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+        if (verifyCodeBtnNav && verifyCodeBtnNav.style.display !== "none") {
+          document.title = "Reset Password | InmarOne";
+          window.scrollTo(0, 0);
+
+          const pageLevelError = document.querySelector(".error.pageLevel") || document.getElementById("claimVerificationServerError");
+          if (pageLevelError) {
+            pageLevelError.style.display = "none";
+          }
+
+          const alertBox = document.getElementById("alertBox");
+          alertBox.style.display = "flex";
+          const timestamp = document.getElementById("timestamp");
+          if (timestamp) {
+            timestamp.textContent = formatDate();
+          }
+
+          const verifyInput = document.getElementById("email_ver_input") || document.getElementById("passwordResetEmailVerificationControl_verificationCode");
+          const verifyInputLabel = document.getElementById("email_ver_input_label") || document.getElementById("passwordResetEmailVerificationControl_verificationCode_label");
+          if (verifyInput) {
+            verifyInput.setAttribute("placeholder", "");
+            verifyInput.classList.add("verify-code-input-spacing");
+          }
+          if (verifyInputLabel) {
+            verifyInputLabel.classList.add("verify-code-label-spacing");
+          }
+
+          const additionalInfo = document.querySelector(".additionalInfo");
+          const verificationInfo = document.querySelector(".verificationInfo");
+          if (verificationInfo) verificationInfo.style.display = "none";
+          if (additionalInfo) {
+            additionalInfo.textContent =
+              "Verification code has been sent to your inbox. Please copy it to the input box below.";
+            additionalInfo.classList.add("codeSentAdditionalInfo");
+          }
+
+          const verifyCodeButton = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+          if (verifyCodeButton) {
+            verifyCodeButton.classList.add("verifycodeBtn");
+            verifyCodeButton.textContent = "Continue";
+          }
+
+          const emailInput = document.querySelector(".resetPwdInput");
+          if (emailInput) {
+            emailInput.classList.add("disabledField");
+            emailInput.setAttribute("readonly", "true");
+          }
+
+          const passwordResetBtnGroup =
+            document.querySelector(".pwdResetBtnGroup");
+          if (passwordResetBtnGroup) {
+            passwordResetBtnGroup.classList.add("verify-code-layout");
+          }
+          const backToSignIn = document.querySelector(".text-link-group");
+          const verifyBtn = document.querySelector(".verifyButton") || document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+          const resendBtn = document.getElementById("email_ver_but_resend") || document.getElementById("passwordResetEmailVerificationControl_but_send_new_code");
+          if (resendBtn) {
+            resendBtn.style.display = "none";
+            resendBtn.classList.add("original-resend-code-btn");
+          }
+
+          if (!document.querySelector(".buttonWrapper")) {
+            const buttonWrapper = document.createElement("div");
+            buttonWrapper.classList.add("buttonWrapper");
+            if (backToSignIn) buttonWrapper.appendChild(backToSignIn);
+            const resendCodeButton = document.createElement("button");
+            resendCodeButton.textContent = "Resend Code";
+            resendCodeButton.id = "email_ver_but_resend_custom";
+            resendCodeButton.classList.add("resend-code-btn");
+            resendCodeButton.type = "button";
+            resendCodeButton.setAttribute("aria-label", "Send new code");
+            buttonWrapper.appendChild(resendCodeButton);
+            resendCodeButton.addEventListener("click", () => {
+              const formWrapper = document.querySelector(".form-wrapper");
+              if (formWrapper && !formWrapper.style.minHeight) {
+                formWrapper.style.minHeight = formWrapper.offsetHeight + "px";
+              }
+              if (resendBtn) resendBtn.click();
+                alertBox.style.display = "flex";
+            });
+
+            if (passwordResetBtnGroup) {
+              passwordResetBtnGroup.appendChild(buttonWrapper);
+            }
+          }
+
+          if (passwordResetBtnGroup && verifyBtn && resendBtn) {
+            resendBtn.addEventListener("click", () => {
+              const alertMessage = document.querySelector(".alert-message");
+              if (alertMessage) {
+                alertMessage.style.display = "flex";
+                alertMessage.textContent = "A New Verification Code Was Sent";
+                const timestamp = document.getElementById("timestamp");
+                if (timestamp) {
+                  timestamp.textContent = formatDate();
+                }
+              }
+            });
+            verifyBtn.addEventListener("click", () => {
+              alertBox.style.display = "none";
+            });
+          }
+
+          const buttonContainer = document.querySelectorAll(".buttonWrapper");
+          if (buttonContainer.length > 1) {
+            buttonContainer[0].style.display = "none";
+          }
+
+          const closeAlert = document.getElementById("closeAlert");
+          closeAlert.addEventListener("click", function () {
+            if (alertBox) {
+              alertBox.style.display = "none";
+            }
+          });
+        }
+      }
+
+      function setButtonDefaultLogic() {
+        var email_ver_but_send = document.getElementById("email_ver_but_send") || document.getElementById("passwordResetEmailVerificationControl_but_send_code");
+        var email_ver_but_verify = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+        var continueButton = document.getElementById("continue");
+
+        if (
+          email_ver_but_send &&
+          email_ver_but_send.style.display !== "none"
+        ) {
+          if (continueButton) continueButton.style.display = "none";
+        }
+
+        if (email_ver_but_send) {
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              if (email_ver_but_send.style.display !== "none") {
+                email_ver_but_send.click();
+                setTimeout(() => {
+                  updateVerifyCodePasswordStyles();
+                }, 500);
+                return;
+              }
+
+              if (email_ver_but_verify && email_ver_but_verify.style.display !== "none") {
+                email_ver_but_verify.click();
+                return;
+              }
+
+              if (continueButton) continueButton.click();
+            }
+          });
+
+          email_ver_but_send.addEventListener("click", function (event) {
+            const observeNavBtn = document.getElementById("email_ver_but_verify") || document.getElementById("passwordResetEmailVerificationControl_but_verify_code");
+
+            if (observeNavBtn) {
+              const observer = new MutationObserver(() => {
+                // Check the visibility condition
+                const isVisible = observeNavBtn.style.display !== "none";
+                if (isVisible) {
+                  updateVerifyCodePasswordStyles();
+                  observer.disconnect(); // Stop watching once triggered
+                }
+              });
+
+              // Observe for style attribute changes
+              observer.observe(observeNavBtn, {
+                attributes: true,
+                attributeFilter: ["style"], // Only observe style changes
+              });
+            }
+          });
+        }
+
+        const targetElement = document.getElementById("email_success") || document.getElementById("passwordResetEmailVerificationControl_success_message");
+
+        if (targetElement) {
+          const continueBtn = document.getElementById("continue");
+
+          const observer = new MutationObserver((mutationsList) => {
+            mutationsList.forEach((mutation) => {
+              if (
+                mutation.attributeName === "style" &&
+                targetElement.style.display !== "none"
+              ) {
+                const text = targetElement.textContent.toLowerCase();
+                if (text.includes("verified")) {
+                  targetElement.style.display = "none";
+                  if (continueBtn && continueBtn.disabled) {
+                    continueBtn.disabled = false;
+                  }
+                  if (continueBtn) continueBtn.click();
+                } else {
+                  targetElement.style.display = "none";
+                }
+              }
+            });
+          });
+
+          observer.observe(targetElement, {
+            attributes: true,
+            attributeFilter: ["style"],
+          });
+        }
+      }
+
+      function displayMsg() {
+        if (document.getElementById("contactAdmin")) {
+          document.getElementById("contactAdmin").style.display = "block";
+        }
+      }
+
+      function isNewAppLogin() {
+        var url = window.location.href;
+        if (
+          url.toLowerCase().includes("signup_signin") &&
+          url.toLowerCase().includes("authorize")
+        )
+          return true;
+        else return false;
+      }
+
+      function getAppParameterFromUrl(name) {
+        var url = window.location.href;
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        var appName = decodeURIComponent(results[2].replace(/\+/g, " "));
+        return appName;
+      }
+
+      function setCookie(cookieName, cookieValue, expiryMins = 30) {
+        var d = new Date();
+        d.setTime(d.getTime() + expiryMins * 60 * 1000);
+        var expires = "expires=" + d.toUTCString();
+        document.cookie =
+          cookieName + "=" + btoa(cookieValue) + ";" + expires + ";path=/";
+      }
+
+      function getCookie(cookieName) {
+        var name = cookieName + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return atob(c.substring(name.length, c.length));
+          }
+        }
+        return "";
+      }
+
+      function getAppNameInnerHTML(appName) {
+        $("#appName").removeClass("narrow-app-name");
+
+        if (appName.toLowerCase() == "medidentify") {
+          return '<div class="MEDidentify"><span class="MEDidentify MED">MED</span><span class="MEDidentify identify">IDENTIFY<sup>&reg;</sup></span></div>';
+        } else {
+          // Have to also make sure things still work for HRM ("Healthcare Returns Management") when displayed.
+          $("#appName").addClass("app-name-narrow");
+        }
+
+        return appName;
+      }
+
+      function checkVerificationStatus() {
+        var sendVerificationCodeButton = document.querySelector(
+          '[id="emailVerificationControl_but_send_code"]'
+        );
+        var verifyingScreen = document.querySelector('[id="verificationCode"]');
+        var verificationSuccess = document.querySelector(
+          '[id="emailVerificationControl_success_message"]'
+        );
+        var emailVerified = document.querySelector(
+          '[form="attributeVerification"]'
+        );
+        var verificationSuccessText =
+          verificationSuccess?.textContent?.toLowerCase() ?? "";
+
+        //Auto click continue button on email verification
+        if (
+          emailVerified &&
+          sendVerificationCodeButton != null &&
+          !sendVerificationCodeButton.checkVisibility() &&
+          verificationSuccess != null &&
+          verificationSuccessText.includes("verified") &&
+          verifyingScreen != null &&
+          !verifyingScreen.checkVisibility()
+        ) {
+          changeMigrationContinueBtnStatus(false);
+          var continueBtn = document.querySelector('[aria-label="Continue"]');
+          if (continueBtn) {
+            continueBtn.classList.add("disableContinue");
+          }
+          continueBtn.click();
+        }
+      }
+
+      //Function to update the styles for a migrated user
+      function updateMigrationStyles() {
+        var emailVerification = document.querySelector(
+          '[id="emailVerificationControl"]'
+        );
+        if (!emailVerification) return;
+        const intro = document.querySelector(".intro");
+        intro?.prepend(
+          createElement("h1", ["heading-xl", "resetPwdHeader"], "Create new password")
+        );
+        const additionalInfo = document.querySelector(".intro p");
+        if (additionalInfo) {
+          additionalInfo.classList.add(
+            "additionalInfo",
+            "migrationAdditionalInfo"
+          );
+          additionalInfo.textContent =
+            "We will send you a verification code to reset your password. Please provide the following details.";
+        }
+        const verificationCode = document.getElementById("verificationCode");
+        verificationCode.placeholder = "";
+        const emailLabel = document.getElementById("email_label");
+        emailLabel.textContent = "Email Address";
+        const continueBtn = document.getElementById("continue");
+        continueBtn.style.display = "none";
+        const sendCodeBtn = document.getElementById(
+          "emailVerificationControl_but_send_code"
+        );
+        sendCodeBtn.textContent = "Send Verification Code";
+        sendCodeBtn.onclick = () => {
+          updateVerficationScreen();
+        };
+        const resendBtn = document.querySelectorAll("#email_ver_but_resend");
+        if (resendBtn.length > 1) {
+          resendBtn[0].style.display = "none";
+        }
+        setupBackToSignIn();
+      }
+
+      //Function to verify the code for a migrated user
+      function updateVerficationScreen() {
+        const verificationSuccessText = document.querySelector(
+          ".verificationSuccessText"
+        );
+        window.scrollTo(0, 0);
+        const alertBox = document.getElementById("alertBox");
+        alertBox.style.display = "flex";
+        const timestamp = document.getElementById("timestamp");
+        if (timestamp) {
+          timestamp.textContent = formatDate();
+        }
+        verificationSuccessText.classList.add("successTextMigration");
+        const verificationCode = document.getElementById("verificationCode");
+        verificationCode.classList.add("verificationCode");
+        const resendBtn = document.getElementById(
+          "emailVerificationControl_but_send_new_code"
+        );
+        const resendCodeOriginal = document.querySelector(".sendNewCode");
+        let count = 0;
+        const interval = setInterval(() => {
+          resendCodeOriginal.style.display = "none";
+          count++;
+
+          if (count >= 4) {
+            clearInterval(interval);
+          }
+        }, 500);
+        const verifyCode = document.getElementById(
+          "emailVerificationControl_but_verify_code"
+        );
+        verifyCode.classList.add("verifyCode");
+        verifyCode.textContent = "Continue";
+
+        const buttonsContainer = document.querySelectorAll(".buttons")?.[1];
+
+        if (buttonsContainer && !document.getElementById("email_ver_but_resend_custom_migration")) {
+          const backToSignInBtn = document.getElementById("cancel");
+          const resendCodeButton = document.createElement("button");
+          resendCodeButton.textContent = "Resend Code";
+          resendCodeButton.id = "email_ver_but_resend_custom_migration";
+          resendCodeButton.classList.add("backToSignInLink");
+          resendCodeButton.type = "button";
+          resendCodeButton.setAttribute("aria-label", "Send new code");
+          backToSignInBtn.insertAdjacentElement("afterend", resendCodeButton);
+          resendCodeButton.addEventListener("click", () => {
+            const formWrapper = document.querySelector(".form-wrapper");
+            if (formWrapper && !formWrapper.style.minHeight) {
+              formWrapper.style.minHeight = formWrapper.offsetHeight + "px";
+            }
+            resendBtn.click();
+              alertBox.style.display = "flex";
+          });
+        }
+        const closeAlert = document.getElementById("closeAlert");
+        closeAlert.addEventListener("click", function () {
+          if (alertBox) {
+            alertBox.style.display = "none";
+          }
+        });
+        if (resendBtn) {
+          resendBtn.addEventListener("click", () => {
+            const alertMessage = document.querySelector(".alert-message");
+            if (alertMessage) {
+              alertMessage.style.display = "flex";
+              alertMessage.textContent = "A New Verification Code Was Sent";
+              const timestamp = document.getElementById("timestamp");
+              if (timestamp) {
+                timestamp.textContent = formatDate();
+              }
+            }
+          });
+          verifyCode.addEventListener("click", () => {
+            alertBox.style.display = "none";
+            updateSetPasswordStyles();
+          });
+        }
+        if (verificationCode && verifyCode) {
+              verificationCode.addEventListener("keydown", function (e) {
+                  if (e.key === "Enter") {
+                      e.preventDefault();
+                      verifyCode.click();
+                  }
+              });
+          }
+      }
+
+      //Fuction to update the styles of the page to create a new password
+      function updateSetPasswordStyles() {
+        const confirmPwdInput = document.getElementById("reenterPassword");
+        const pwdInput = document.getElementById("password");
+        const form = document.getElementById("attributeVerification");
+        form?.classList.add("migrationPassword");
+        if (!confirmPwdInput || !pwdInput || !form) return;
+
+        setupPageLayout();
+        setupLabelsAndPlaceholders("password", "reenterPassword");
+
+        const heading = document.querySelector(".change-password-header");
+        if (heading) {
+          heading.textContent = "Create new password";
+          heading.classList.add("heading-xl");
+        }
+        const intro = document.querySelector(".intro");
+        const additionalInfo = intro?.querySelector(".codeSentAdditionalInfo");
+
+        if (additionalInfo)
+          additionalInfo.textContent =
+            "The code has been verified! Please create a New Password to continue.";
+        setupBackToSignIn();
+        const errors = createAndAppendErrors(pwdInput, confirmPwdInput);
+        setupPasswordValidation(pwdInput, confirmPwdInput, errors);
+      }
+
+      function changeMigrationContinueBtnStatus(status = true) {
+        //Disable continue button
+        var emailVerification = document.querySelector(
+          '[id="emailVerificationControl"]'
+        );
+        var continueButton = document.querySelector('[aria-label="Continue"]');
+        if (emailVerification && continueButton) {
+          continueButton.disabled = status;
+        }
+
+        //set email disabled since claim transformation uses shared field
+        var sendVerificationButton = document.querySelector(
+          '[id="emailVerificationControl_but_send_code"]'
+        );
+        var email = document.querySelector('[id="email"]');
+
+        if (emailVerification && email && sendVerificationButton)
+          if (
+            email.value !== "" &&
+            sendVerificationButton.style.display === "inline"
+          )
+            email.disabled = true;
+      }
+
+      // change your password along with password validation
+      function updateCreatePasswordStyles() {
+        const MAX_LENGTH = 16;
+        const confirmPwdInput = document.getElementById("reenterPassword");
+        const pwdInput = document.getElementById("newPassword");
+
+        const form = document.getElementById("attributeVerification");
+
+        if (!confirmPwdInput || !pwdInput || !form) return;
+
+        pwdInput.setAttribute("maxlength", MAX_LENGTH.toString());
+        confirmPwdInput.setAttribute("maxlength", MAX_LENGTH.toString());
+
+        // Trim pasted values
+        const trimOnPaste = (input) => {
+          input.addEventListener("paste", (e) => {
+            e.preventDefault();
+            const pasted = (e.clipboardData || window.clipboardData).getData(
+              "text"
+            );
+            const trimmed = pasted.trim().slice(0, MAX_LENGTH);
+            const selectionStart = input.selectionStart ?? 0;
+            const selectionEnd = input.selectionEnd ?? 0;
+
+            const before = input.value.slice(0, selectionStart);
+            const after = input.value.slice(selectionEnd);
+
+            const newValue = (before + trimmed + after).slice(0, MAX_LENGTH);
+            input.value = newValue;
+
+            input.dispatchEvent(new Event("input", { bubbles: true }));
+          });
+        };
+
+        trimOnPaste(pwdInput);
+        trimOnPaste(confirmPwdInput);
+
+        setupPageLayout();
+        setupLabelsAndPlaceholders();
+        const backToSignIn = document.getElementById("cancel");
+        if (backToSignIn) {
+          backToSignIn.classList.add("backToSignInLink");
+        }
+
+        const errors = createAndAppendErrors(pwdInput, confirmPwdInput);
+        setupPasswordValidation(pwdInput, confirmPwdInput, errors);
+      }
+
+      //Function to set the page layout for reset password screen
+      function setupPageLayout() {
+        window.scrollTo(0, 0);
+        document.title = "Reset Password | InmarOne";
+
+        const intro = document.querySelector(".intro");
+
+        intro?.prepend(
+          createElement(
+            "h1",
+            ["heading-xl", "change-password-header"],
+            "Change your password"
+          )
+        );
+
+        const additionalInfo = intro?.querySelector("p");
+        if (additionalInfo) {
+          additionalInfo.classList.add(
+            "additionalInfo",
+            "codeSentAdditionalInfo"
+          );
+          additionalInfo.textContent =
+            "Create and confirm a new password that meets our requirements.";
+        }
+        const formWrapper = document.querySelector(".form-wrapper");
+        formWrapper?.classList.add("fullWidthForm");
+      }
+
+      //Function for labels and placeholders for reset password screen
+      function setupLabelsAndPlaceholders(
+        password = "newPassword",
+        reEnterPassword = "reenterPassword"
+      ) {
+        hideElementById("ReadOnlyEmail");
+        hideElementById("ReadOnlyEmail_label");
+        updateLabel("password_label", "New Password");
+        updateLabel("reenterPassword_label", "Re-enter New Password");
+
+        document.getElementById(password).placeholder = "";
+        document.getElementById(reEnterPassword).placeholder = "";
+        const submitBtn = document.getElementById("continue");
+        if (submitBtn) submitBtn.textContent = "Submit";
+      }
+
+      //Function to create and add errors in reset password screen
+      function createAndAppendErrors(pwdInput, confirmPwdInput) {
+        const errors = {
+          pwdRules: createErrorMessage(
+            "Passwords don't meet the requirements."
+          ),
+          confirmPwdRules: createErrorMessage(
+            "Passwords don't meet the requirements."
+          ),
+          confirmPwdMismatch: createErrorMessage("Passwords don't match."),
+        };
+
+        appendErrors(pwdInput, [errors.pwdRules]);
+        appendErrors(confirmPwdInput, [
+          errors.confirmPwdRules,
+          errors.confirmPwdMismatch,
+        ]);
+
+        const form = document.getElementById("attributeVerification");
+        const rulesContainer = createPasswordRules(pwdInput);
+        const formContainer = createElement("div", ["form-container"]);
+        form.parentNode.insertBefore(formContainer, form);
+        formContainer.append(form, rulesContainer);
+
+        return errors;
+      }
+
+      // Call validatation function on the "new password" and "re-enter password" fields
+      function setupPasswordValidation(pwdInput, confirmPwdInput, errors) {
+        const validate = () =>
+          validatePasswords(pwdInput, confirmPwdInput, errors);
+        pwdInput.addEventListener("blur", validate);
+        confirmPwdInput.addEventListener("blur", validate);
+        validate();
+      }
+
+      // Validate passwords and toggle errors accordingly
+      function validatePasswords(pwdInput, confirmPwdInput, errors) {
+        const pwdValue = pwdInput.value.trim();
+        const confirmPwdValue = confirmPwdInput.value.trim();
+        const isPwdValid = checkPasswordRules(pwdValue);
+        const isConfirmPwdValid = checkPasswordRules(confirmPwdValue);
+        const isMatch = pwdValue === confirmPwdValue;
+        toggleError(errors.pwdRules, !isPwdValid && pwdValue);
+        toggleError(errors.confirmPwdRules, !isPwdValid && confirmPwdValue);
+        toggleError(
+          errors.confirmPwdMismatch,
+          isPwdValid && confirmPwdValue && !isMatch
+        );
+
+        updateBorderColor(pwdInput, !isPwdValid && pwdValue);
+        updateBorderColor(
+          confirmPwdInput,
+          (!isPwdValid && confirmPwdValue) ||
+            (isPwdValid && confirmPwdValue && !isMatch)
+        );
+        updateShowPasswordButton(
+          ".showPassword-newPassword",
+          pwdValue,
+          isPwdValid
+        );
+        updateShowPasswordButton(
+          ".showPassword-reenterPassword",
+          confirmPwdValue,
+          isConfirmPwdValid
+        );
+        const passwordError = document.getElementById("password-error-message");
+        if (passwordError) passwordError.style.display = "none";
+      }
+
+      //Add a classname to show/hide password button to style it accordingly depending on error state
+      function updateShowPasswordButton(selector, value, isValid) {
+        const button = document.querySelector(selector);
+        if (!button) return;
+        if (value && !isValid) {
+          button.classList.add("error-showPassword");
+        } else {
+          button.classList.remove("error-showPassword");
+        }
+      }
+
+      /** Append error messages to an input */
+      function appendErrors(input, errorElements) {
+        errorElements.forEach((error) => {
+          input.after(error);
+          error.style.display = "none";
+        });
+      }
+
+      /** Toggle error visibility */
+      function toggleError(errorElement, condition) {
+        errorElement.style.display = condition ? "flex" : "none";
+      }
+
+      /** Update border color */
+      function updateBorderColor(input, isError) {
+        input.style.borderColor = isError ? "#CB2D20" : "";
+
+        const parent = input.parentElement;
+        const pwdToggle = parent?.querySelector(".showPassword");
+
+        if (pwdToggle) {
+          if (isError) {
+            pwdToggle.parentElement.classList.add("errorElement");
+          } else {
+            pwdToggle.parentElement.classList.remove("errorElement");
+          }
+        }
+      }
+
+      // Styles for error message
+      function createErrorMessage(text, className = []) {
+        const combinedClasses = ["error-message", ...className];
+        const errorContainer = createElement("div", combinedClasses);
+        const icon = createElement("span", ["error-icon"]);
+        icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M1.53134 8.96235C1.2669 8.70617 1.2669 8.29081 1.53135 8.03463L7.73472 2.02515C7.99917 1.76896 8.42793 1.76896 8.69238 2.02515L14.8958 8.03463C15.1602 8.29081 15.1602 8.70617 14.8958 8.96235L8.69238 14.9718C8.42793 15.228 7.99917 15.228 7.73472 14.9718L1.53134 8.96235ZM8.21349 5.45593C8.39758 5.45593 8.54682 5.60517 8.54682 5.78926V9.41331C8.54682 9.5974 8.39758 9.74664 8.21349 9.74664C8.02939 9.74664 7.88015 9.5974 7.88015 9.41331V5.78926C7.88015 5.60517 8.02939 5.45593 8.21349 5.45593ZM8.21361 12.4333C8.55796 12.4333 8.83711 12.1629 8.83711 11.8293C8.83711 11.4957 8.55796 11.2253 8.21361 11.2253C7.86926 11.2253 7.59011 11.4957 7.59011 11.8293C7.59011 12.1629 7.86926 12.4333 8.21361 12.4333Z" fill="#CB2D20"/>
+                                                        </svg>`;
+        const message = createElement("span", [], text);
+        errorContainer.append(icon, message);
+        return errorContainer;
+      }
+
+      /** Creates and appends password rules */
+      function createPasswordRules(pwdInput) {
+        const rulesContainer = createElement("div", ["password-rules"]);
+        rulesContainer.appendChild(
+          createElement(
+            "h2",
+            ["passwordRulesHeader"],
+            "Your password must contain:"
+          )
+        );
+
+        const rules = [
+          { text: "At least 8 characters in length", regex: /.{8,}/ },
+          {
+            text: "A maximum of 16 characters in length",
+            regex: /^.{1,16}$/,
+          },
+          {
+            text: "At least 3 of the following:",
+            subRules: [
+              { text: "Lowercase letter (a-z)", regex: /[a-z]/ },
+              { text: "Uppercase letter (A-Z)", regex: /[A-Z]/ },
+              { text: "Digits (0-9)", regex: /\d/ },
+              {
+                text: "One or more of the following symbols: @ # $ % ^ & * - _ + = [ ] { } | \\ : ' , ? / ` ~ \" ( ) ; . ",
+                regex: /[@#$%^&*_\-+=[\]{}|\\:'",?/`~();.]/,
+              },
+            ],
+          },
+        ];
+        rules.forEach((rule) =>
+          rulesContainer.appendChild(createRuleItem(rule, pwdInput))
+        );
+        return rulesContainer;
+      }
+
+      //Check the new password rules and subrules
+      function checkPasswordRules(password) {
+        const mainRules = [/.{8,}/, /^.{8,16}$/];
+
+        const subRules = [
+          /[a-z]/,
+          /[A-Z]/,
+          /\d/,
+          /[@#$%^&*_\-+=[\]{}|\\:'",?/`~();.]/,
+        ];
+
+        // Check if both main rules are satisfied
+        const mainRulesPassed = mainRules.every((rule) => rule.test(password));
+
+        // Count how many sub-rules are satisfied
+        const subRulesPassedCount = subRules.filter((rule) =>
+          rule.test(password)
+        ).length;
+
+        // Password is valid if both main rules are passed and at least 3 sub-rules are satisfied
+        return mainRulesPassed && subRulesPassedCount >= 3;
+      }
+
+      /** Creates a single rule item */
+      function createRuleItem(rule, pwdInput) {
+        const ruleItem = createElement("div", ["rule-item"]);
+        const icon = createElement(
+          "span",
+          ["rule-icon"],
+          getNotSatisfiedIcon()
+        );
+        const ruleText = createElement("span", [], rule.text);
+        ruleItem.append(icon, ruleText);
+        if (rule.subRules) {
+          const subRulesContainer = createElement("div", ["sub-rules"]);
+          const subIcons = [];
+          rule.subRules.forEach((subRule) => {
+            const subRuleItem = createElement("div", ["sub-rule-item"]);
+            const subIcon = createElement(
+              "span",
+              ["rule-icon"],
+              getNotSatisfiedIcon()
+            );
+            const subRuleText = createElement("span", [], subRule.text);
+            subIcons.push({ subIcon, subRule });
+            subRuleItem.append(subIcon, subRuleText);
+            subRulesContainer.appendChild(subRuleItem);
+          });
+          ruleItem.appendChild(subRulesContainer);
+          pwdInput.addEventListener("input", () => {
+            let satisfiedCount = 0;
+
+            subIcons.forEach(({ subIcon, subRule }) => {
+              if (subRule.regex.test(pwdInput.value)) {
+                subIcon.innerHTML = getCheckIcon();
+                satisfiedCount++;
+              } else {
+                subIcon.innerHTML = getNotSatisfiedIcon();
+              }
+            });
+            icon.innerHTML =
+              satisfiedCount >= 3 ? getCheckIcon() : getNotSatisfiedIcon();
+          });
+        } else {
+          pwdInput.addEventListener("input", () => {
+            icon.innerHTML = rule.regex.test(pwdInput.value)
+              ? getCheckIcon()
+              : getNotSatisfiedIcon();
+          });
+        }
+        return ruleItem;
+      }
+
+      /** Sets up "Back to Sign In" link */
+      function setupBackToSignIn() {
+        const backToSignIn = document.getElementById("cancel");
+        if (backToSignIn) {
+          backToSignIn.classList.add("backToSignInLink");
+          backToSignIn.textContent = "Back to Sign in";
+        }
+      }
+
+      /** Helper function to create an element with classes and text */
+      function createElement(tag, classNames = [], text = "") {
+        const element = document.createElement(tag);
+        if (classNames.length) element.classList.add(...classNames);
+        if (text) element.innerHTML = text;
+        return element;
+      }
+
+      /** Helper function to hide an element by ID */
+      function hideElementById(id) {
+        const element = document.getElementById(id);
+        if (element) element.style.display = "none";
+      }
+
+      /** Helper function to update a label's text */
+      function updateLabel(id, text) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = text;
+      }
+
+      // Icon to display when the rule is satisfied
+      function getCheckIcon() {
+        return `<svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="25"
+                                                viewBox="0 0 24 25"
+                                                fill="none"
+                                              >
+                                                <path
+                                                  d="M9.72433 17.477L5.03099 12.5085C5.03087 12.5084 5.03074 12.5082 5.03062 12.5081C5.02602 12.5031 5.0184 12.4928 5.01174 12.4758L4.10041 12.8336L5.01174 12.4758C5.00487 12.4583 5.00027 12.4368 5.00001 12.4131C4.99975 12.389 5.00381 12.3687 5.00939 12.3525L9.00152 16.5769L9.72878 17.3465L10.4556 16.5765L18.9902 7.53383C18.996 7.55028 19.0003 7.57114 19 7.59589C18.9994 7.64696 18.9798 7.67977 18.9691 7.69142C18.969 7.69153 18.9689 7.69163 18.9688 7.69174L9.72433 17.477Z"
+                                                  fill="#0005F8"
+                                                  stroke="#0005F8"
+                                                  stroke-width="2"
+                                                />
+                                              </svg>`;
+      }
+
+      // Icon to display when rule is not satisfied
+      function getNotSatisfiedIcon() {
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <circle cx="12" cy="12.5" r="3" fill="#2C2C2E"/>
+                                        </svg>`;
+      }
+
+      // Phone authentication in MFA user
+      function updatePhoneNumberAuthentication() {
+        const phoneValidationId = document.getElementById("verifyPhone");
+        if (!phoneValidationId) return;
+        const intro = document.querySelector(".intro");
+        const introInfo = intro?.querySelector("p");
+
+        if (intro) {
+          const heading = document.createElement("h1");
+          heading.textContent = "Enter your phone number";
+          heading.classList.add(
+            "heading-xl",
+            "authenticatorHeading",
+            "phoneAuthenticationHeading"
+          );
+          intro.prepend(heading);
+
+          if (introInfo) {
+            introInfo.textContent =
+              "We will send a code via SMS to authenticate you.";
+            introInfo.classList.add("authenticatorDescription");
+          }
+        }
+        const sendCode = document.getElementById("sendCode");
+
+        if (sendCode) {
+          sendCode.textContent = "Continue";
+          sendCode.onclick = () => {
+            let count = 0;
+            const interval = setInterval(() => {
+              const codeVerification =
+                document.getElementById("codeVerification");
+              const verifyLabel = document.querySelectorAll("label");
+              const checkForLabel = Array.from(verifyLabel)?.find(
+                (label) => label.textContent === "Verification Code"
+              );
+              if (codeVerification.style.display !== "none" && !checkForLabel) {
+                updatePhoneVerificationStyles();
+              }
+              count++;
+
+              if (count >= 4) {
+                clearInterval(interval);
+              }
+            }, 500);
+          };
+        }
+        const buttons = document.querySelectorAll(".buttons")?.[1];
+        if (buttons) {
+          buttons.classList.add("phoneValidationBtnGroup");
+
+          const cancel = document.getElementById("cancel");
+          const verifyPhone = document.getElementById("verifyPhone");
+          sendCode.classList.remove("disabled");
+          verifyPhone.classList.remove("disabled");
+          if (cancel) cancel.style.display = "none";
+          const buttonGroup = document.createElement("div");
+          buttonGroup.classList.add("phoneBtns");
+
+          const back = document.createElement("button");
+          back.textContent = "Back";
+          back.classList.add("backToSignIn");
+          back.onclick = () => cancel?.click();
+
+          verifyPhone.style.display = "none";
+          const callBtn = document.createElement("button");
+          callBtn.textContent = "Call Me";
+          callBtn.classList.add("backToSignIn", "callBtn");
+          callBtn.onclick = () => verifyPhone?.click();
+          buttonGroup.appendChild(back);
+          buttonGroup.appendChild(callBtn);
+          buttons.appendChild(buttonGroup);
+        }
+        setupPhoneInput();
+      }
+
+      // Verification for phone authentication in MFA
+      function updatePhoneVerificationStyles() {
+        const codeVerification = document.getElementById("codeVerification");
+        const retryCode = document.getElementById("retryCode");
+
+        if (!(retryCode && codeVerification.style.display !== "none")) return;
+        const alertBox = document.getElementById("alertBox");
+        const alertInfo = document.querySelector(".alertInfo");
+        alertInfo.textContent =
+          "It can take a few minutes. If you haven't received a message, please go back to request a new code.";
+        alertBox.style.display = "flex";
+        window.scrollTo(0, 0);
+        const timestamp = document.getElementById("timestamp");
+        if (timestamp) {
+          timestamp.textContent = formatDate();
+        }
+
+        const phoneAuthenticationHeading = document.querySelector("h1");
+        phoneAuthenticationHeading.textContent = "Enter the verification code";
+        const description = document.querySelector(".authenticatorDescription");
+        description.textContent =
+          "Verification code has been sent via SMS to authenticate you. Please enter it to the input box below.";
+        const actionLabel = document.querySelector(".actionLabel");
+        actionLabel.style.display = "none";
+        const input = document.getElementById("verificationCode");
+
+        const label = document.createElement("label");
+        label.setAttribute("for", "verificationCode");
+        label.textContent = "Verification Code";
+
+        input.parentNode.insertBefore(label, input);
+        const numberDiv = document.querySelector(".phoneNumber .number");
+        const phoneField = document.querySelector(".phone-input-wrapper");
+        phoneField.style.display = "none";
+        if (numberDiv) {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.id = "phoneNumberInput";
+          input.value = numberDiv.textContent.trim();
+          input.disabled = true;
+
+          numberDiv.parentNode.replaceChild(input, numberDiv);
+          const label = document.createElement("label");
+          label.setAttribute("for", "phoneNumberInput");
+          label.textContent = "Phone Number";
+
+          input.parentNode.insertBefore(label, input);
+        }
+
+        const verifyCode = document.getElementById("verifyCode");
+        verifyCode.textContent = "Continue";
+        const callBtn = document.querySelector(".callBtn");
+        callBtn.style.display = "none";
+      }
+
+      function setupPhoneInput() {
+        const phoneEntry = document.getElementById("phoneEntry");
+        if (!phoneEntry) return;
+
+        // Hide default input
+        const phone = document.querySelector(".input");
+        if (phone) phone.style.display = "none";
+
+        // Create wrapper
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("phone-input-wrapper");
+
+        // Create select wrapper
+        const selectWrapper = document.createElement("div");
+        selectWrapper.classList.add("select-wrapper");
+
+        let selectedCode = null;
+
+        // Supported countries
+        const countries = [
+          { code: "+1", name: "United States (+1)" },
+          { code: "+1", name: "Canada (+1)" },
+          { code: "+52", name: "Mexico (+52)" },
+        ];
+
+        // Create custom country dropdown
+        const select = document.createElement("div");
+        select.classList.add("country-dropdown");
+
+        // Create dropdown label and icon container
+        const toggleContainer = document.createElement("button");
+        toggleContainer.classList.add("country-dropdown-toggle-container");
+        select.appendChild(toggleContainer);
+
+        // Create label for short country code text
+        const toggle = document.createElement("div");
+        toggle.classList.add("country-dropdown-toggle");
+        toggle.textContent = countries[0].code;
+        toggleContainer.appendChild(toggle);
+
+        // Add chevron icon
+        const chevron = document.createElement("span");
+        chevron.classList.add("chevron-icon");
+        chevron.innerHTML = chevronDown;
+        toggleContainer.appendChild(chevron);
+
+        // Create options
+        const optionsContainer = document.createElement("div");
+        optionsContainer.classList.add("country-dropdown-options");
+        select.appendChild(optionsContainer);
+
+        countries.forEach((country) => {
+          const option = document.createElement("div");
+          option.classList.add("country-dropdown-option");
+          option.dataset.code = country.code;
+          option.dataset.fullLabel = country.name;
+          option.textContent = country.name;
+          optionsContainer.appendChild(option);
+
+          option.addEventListener("click", () => {
+            selectedCode = country.code;
+            toggle.textContent = country.code;
+            optionsContainer.classList.remove("show");
+
+            const countryCodeSelect = document.getElementById("countryCode");
+            if (countryCodeSelect) {
+              Array.from(countryCodeSelect.options).forEach((countryOption) => {
+                if (countryOption.textContent.trim() === option.textContent) {
+                  countryOption.setAttribute("selected", true);
+                } else {
+                  countryOption.removeAttribute("selected");
+                }
+              });
+            }
+          });
+        });
+
+        // When dropdown is about to open
+        toggleContainer.addEventListener("click", () => {
+          optionsContainer.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!select.contains(e.target)) {
+            optionsContainer.classList.remove("show");
+          }
+        });
+
+        // Create input field
+        const input = document.createElement("input");
+        input.type = "tel";
+        input.classList.add("phone-number-input");
+        input.id = "phone-number";
+
+        // Assemble elements
+        selectWrapper.appendChild(select);
+        wrapper.appendChild(selectWrapper);
+        wrapper.appendChild(input);
+        phoneEntry.appendChild(wrapper);
+
+        // Sync with hidden number input
+        const numberInput = document.getElementById("number");
+        if (numberInput) {
+          input.addEventListener("input", () => {
+            numberInput.value = input.value;
+          });
+        }
+      }
+      const chevronDown = `<svg
+                                        width="16"
+                                        height="17"
+                                        viewBox="0 0 16 17"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M7.70573 11.2943C7.86719 11.4557 8.13281 11.4557 8.29427 11.2943L12.4609 7.1276C12.6224 6.96615 12.6224 6.70052 12.4609 6.53906C12.2995 6.3776 12.0339 6.3776 11.8724 6.53906L8 10.4115L4.1276 6.53906C3.96615 6.3776 3.70052 6.3776 3.53906 6.53906C3.3776 6.70052 3.3776 6.96615 3.53906 7.1276L7.70573 11.2943Z"
+                                          fill="#2C2C2E"
+                                        />
+                                      </svg>`;
+    </script>
+</head>
+  <body>
+    <div class="background-wrapper">
+      <div class="background-container"></div>
+    </div>
+    <div class="content-wrapper">
+      <main class="container">
+        <div id="alertBox" class="alert-box">
+          <!-- Icon and Text -->
+          <div class="alert-content">
+            <div class="alert-title">
+              <svg
+                fill="none"
+                height="18"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="m12 3c-4.97056 0-9 4.02944-9 9 0 4.9706 4.02944 9 9 9 4.9706 0 9-4.0294 9-9 0-4.97056-4.0294-9-9-9zm-10 9c0-5.52285 4.47715-10 10-10 5.5228 0 10 4.47715 10 10 0 5.5228-4.4772 10-10 10-5.52285 0-10-4.4772-10-10zm10-1c.2761 0 .5.2239.5.5v6c0 .2761-.2239.5-.5.5s-.5-.2239-.5-.5v-6c0-.2761.2239-.5.5-.5zm.5-4.5c0-.27614-.2239-.5-.5-.5s-.5.22386-.5.5v2c0 .27614.2239.5.5.5s.5-.22386.5-.5z"
+                  fill="#2c2c2e"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <div class="alert-message">Verification Code Sent</div>
+            </div>
+            <button id="closeAlert" class="close-button">
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="m6.35355 5.64645c-.19526-.19527-.51184-.19527-.7071 0-.19527.19526-.19527.51184 0 .7071l5.64645 5.64645-5.64645 5.6464c-.19527.1953-.19527.5119 0 .7072.19526.1952.51184.1952.7071 0l5.64645-5.6465 5.6464 5.6465c.1953.1952.5119.1952.7072 0 .1952-.1953.1952-.5119 0-.7072l-5.6465-5.6464 5.6465-5.64645c.1952-.19526.1952-.51184 0-.7071-.1953-.19527-.5119-.19527-.7072 0l-5.6464 5.64645z"
+                  fill="#2c2c2e"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+          <p class="alertInfo">
+            It can take a few minutes. If you haven't received an email, please
+            request a new code.
+          </p>
+          <p id="timestamp" class="alert-timestamp"></p>
+        </div>
+        <div class="form-wrapper slide-up">
+          <img
+            id="centerHeaderImg"
+            class="logo"
+            alt="Inmar Intelligence"
+            src="https://qahcplatformstorage.blob.core.windows.net/assets/inmar_logo.png"
+          />
+
+          <table id="headerImgTable" style="display: none">
+            <tr>
+              <td style="padding-right: 20px">
+                <img
+                  id="dividedLogo"
+                  alt="Inmar Intelligence"
+                  src="https://qahcplatformstorage.blob.core.windows.net/assets/inmar_logo.png"
+                />
+              </td>
+              <td id="tdAppName">
+                <div id="appName" class="app_name narrow-app-name"></div>
+              </td>
+            </tr>
+          </table>
+
+          <div id="api"></div>
+          <div class="text-link-group">
+            <a href="/" id="switchAccountLink" class="clsHidden"
+              >Switch Account</a
+            >
+            <a href="/" id="forgotPasswordLink" class="clsHidden"
+              >Forgot Password</a
+            >
+          </div>
+          <span
+            id="contactAdmin"
+            style="display: none; margin-left: 10px; padding-left: 5px"
+          >
+            <label
+              id="lblMsg"
+              style="color: red; margin-left: 10px; padding-left: 5px"
+              >Please contact your system administrator<br />
+              to reset your password.</label
+            >
+          </span>
+        </div>
+      </main>
+      <script type="module" src="/src/main.tsx"></script>
+      <footer>
+        <div class="footer-left-container">
+          <a
+            href="https://www.inmar.com/contact/new-inmar-contact-us"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Contact Sales</a
+          >
+          <a
+            href="mailto:healthcaresupport@inmar.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Help</a
+          >
+        </div>
+        <div class="footer-right-container">
+          <a
+            href="https://qa-healthcare.inmar.com/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy Policy</a
+          >
+          <a
+            href="https://www.inmar.com/terms-conditions/website-terms-of-use"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Terms of Use</a
+          >
+          <a
+            href="https://www.inmar.com/about/accessibility-statement"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Accessibility Statement</a
+          >
+          <p>© <span id="year"></span> Inmar Inc.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
