@@ -1,0 +1,6 @@
+@hrdServer_HostAddress = http://localhost:5229
+
+GET {{hrdServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
