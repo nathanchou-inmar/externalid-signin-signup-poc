@@ -1,6 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+export async function checkOTL() {
+    console.count("PrivateSignUpPage render");
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("invite");
+    console.log(token);
+    const response = await fetch("/api/checkOTL", {
+        method: "POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            token: token
+        })
+    })
+    return response;
+}
 
 function Signup() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function run(){
+            const response = await checkOTL();
+            if (!response.ok) {
+                navigate("/transition");
+            }
+        }
+        run();
+    }, [])
+
     const [entries, setEntries] = useState({
         displayName: "",
         domain: "",
@@ -13,7 +43,8 @@ function Signup() {
         setEntries(values => ({...values, [e.target.name]: e.target.value}));
     }
 
-    function handleSubmit(e) {
+    const [responseMessage, setResponseMessage] = useState("hi");
+    async function handleSubmit(e) {
         e.preventDefault();
         setEntries({
             displayName: "",
@@ -22,11 +53,54 @@ function Signup() {
             clientId: "",
             clientSecret: ""
         })
-        console.log("submitted");
+        setResponseMessage("loading");
+        console.log("submitted: ", entries);
+        const output = await fetch("/api/oidc", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(entries)
+        });
+
+        var response = await output.json();
+
+        if (!output.ok) {
+            console.log("problem: ", response.message);
+            setResponseMessage(`problem: ${response.message}`);
+        } else {
+            console.log("done: ", response.id);
+            setResponseMessage(`completed: ${response.id}`);
+        }
+        
+    }
+
+    const [message, setMessage] = useState("Press me");
+    async function apiTest(e) {
+        console.log("API button pressed");
+        const response = await fetch("/api/HelloWorld", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                message: "HI"
+            })
+        });
+        
+        if (!response.ok) {
+            console.log("bad", response.statusText);
+            throw Error("Something went wrong");
+        }
+
+        const output = (await response.json()).output;
+        console.log(output);
+        setMessage(output);
     }
     return(
         <div>
-            <p>Hi</p>
+            <p>{responseMessage}</p>
+            <button onClick={apiTest}>{message}</button>
             <form onSubmit={handleSubmit}>
                <label> Display Name:
                 <input

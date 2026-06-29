@@ -18,20 +18,20 @@ function Signin() {
     var blank = email.trim() === "";
 
     async function handleSubmit(event) {
-    event.preventDefault();
-    const emailHint = email;
-    setEmail("");
-    if (loading || blank) return;
-    try {
-        setLoading(true);
-        await sendToMicrosoft(emailHint);
-    }
-    catch (e) {
-        console.log("exception: ", e);
-    }
-    finally {
-        setLoading(false);
-    }
+        event.preventDefault();
+        const emailHint = email;
+        setEmail("");
+        if (loading || blank) return;
+        try {
+            setLoading(true);
+            await sendToMicrosoft(emailHint);
+        }
+        catch (e) {
+            console.log("exception: ", e);
+        }
+        finally {
+            setLoading(false);
+        }
     }
 
     return (

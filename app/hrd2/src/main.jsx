@@ -17,9 +17,7 @@ async function startApp() {
     document.getElementById("root") ?? document.getElementById("api");
 
   createRoot(document.getElementById('root')).render(
-    <StrictMode>
-      <App />
-    </StrictMode>,
+    <App />
   )
 }
 

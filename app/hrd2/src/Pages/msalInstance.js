@@ -1,12 +1,11 @@
 import { PublicClientApplication, 
-        BrowserCacheLocation, 
-        type Configuration
+        BrowserCacheLocation,
 } from "@azure/msal-browser";
 
 const clientId = import.meta.env.VITE_ENTRA_CLIENT_ID;
 const authority = import.meta.env.VITE_ENTRA_AUTHORITY;
 
-const msalConfig: Configuration = {
+const msalConfig = {
   auth: {
     clientId,
     authority,
@@ -20,12 +19,11 @@ const msalConfig: Configuration = {
 export const msalInstance = new PublicClientApplication(msalConfig);
 const loginScopes = ["openid", "profile", "email"];
 
-export async function sendToMicrosoft(email: string, hint: string) {
+export async function sendToMicrosoft(email) {
     console.log("sent: ", msalInstance);
     console.log(email, "\nhint: ", hint);
     await msalInstance.loginRedirect({
         scopes: loginScopes,
-        loginHint: email,
-        //domainHint: hint, obsolete because of Microsoft Global HRD
+        loginHint: email
     });
 }

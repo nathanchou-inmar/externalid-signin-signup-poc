@@ -6,6 +6,7 @@ import heroImg from './assets/hero.png';
 import Signup from "./Pages/Signup";
 import Home from "./Pages/Home";
 import Signin from "./Pages/Signin";
+import Transition from './Pages/Transition';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Signin" element={<Signin />} />
+        <Route path="/transition" element={<Transition />} />
       </Routes>
     </BrowserRouter>
   )
