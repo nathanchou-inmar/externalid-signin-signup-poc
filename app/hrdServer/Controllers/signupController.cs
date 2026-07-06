@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc;
 using MGModels = Microsoft.Graph.Beta.Models;
 using Microsoft.Graph.Beta;
@@ -6,9 +5,6 @@ using Microsoft.Graph.Beta.Models.ODataErrors;
 using Azure.Identity;
 using Azure.Core;
 using System.ClientModel.Primitives;
-namespace hrdServer;
-
-
 
 [ApiController]
 [Route("/api/HelloWorld")]
@@ -42,7 +38,7 @@ public class OTLController : ControllerBase
     [HttpPost]
     public IActionResult checkOTL([FromBody] Input input)
     {
-        Console.WriteLine("api received: {0}", input.token);
+        Console.WriteLine($"api received: {input.token}");
         if (input.token != null && input.token.Equals("abc123"))
         {
             return Ok(new
@@ -153,8 +149,8 @@ public class OIDCController : ControllerBase{
                 Console.WriteLine("failed after creation");
                 return Problem(detail: "Attatching to flow failed", statusCode: 500);
             }
-            Console.WriteLine($"attatched");
-            return Ok(new { message = "created", id = result.Id });
+            Console.WriteLine($"attatched: {result.Id}");
+            return Ok(new { message = "created with IdP Id: ", id = result.Id });
         }
         catch (ODataError e) {
             return StatusCode(500, new { code = e.Error?.Code, message = e.Error?.Message });

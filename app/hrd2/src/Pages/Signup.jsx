@@ -43,9 +43,11 @@ function Signup() {
         setEntries(values => ({...values, [e.target.name]: e.target.value}));
     }
 
-    const [responseMessage, setResponseMessage] = useState("hi");
+    const [responseMessage, setResponseMessage] = useState();
+    const [loading, setLoading] = useState(false);
     async function handleSubmit(e) {
         e.preventDefault();
+        setLoading(true);
         setEntries({
             displayName: "",
             domain: "",
@@ -62,6 +64,8 @@ function Signup() {
             },
             body: JSON.stringify(entries)
         });
+        
+        setLoading(false);
 
         var response = await output.json();
 
@@ -72,7 +76,6 @@ function Signup() {
             console.log("done: ", response.id);
             setResponseMessage(`completed: ${response.id}`);
         }
-        
     }
 
     const [message, setMessage] = useState("Press me");
@@ -100,7 +103,6 @@ function Signup() {
     return(
         <div>
             <p>{responseMessage}</p>
-            <button onClick={apiTest}>{message}</button>
             <form onSubmit={handleSubmit}>
                <label> Display Name:
                 <input
@@ -147,7 +149,9 @@ function Signup() {
                     required
                 />
                </label>
-               <input type="submit"></input>
+                <button id="submit" type="submit" disabled={loading}>
+                {loading ? "Loading" : "Submit"}
+                </button>
             </form>
         </div>
     )

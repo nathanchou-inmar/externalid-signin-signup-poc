@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { msalInstance } from './msalInstance.js'
+import { msalInstance } from './Scripts/msalInstance.js'
 import './index.css'
 import App from './App.jsx'
 

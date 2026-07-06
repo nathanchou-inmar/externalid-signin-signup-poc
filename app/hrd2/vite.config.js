@@ -10,6 +10,12 @@ export default defineConfig({
         target: "http://localhost:5229",
         changeOrigin: true,
         secure: false
+      },
+      "/authprofileapi": {
+        target: "https://ut-hc-platform-authprofileapi.azurewebsites.net",
+        changeOrigin: true,
+        secure: true,
+        rewrite: path => path.replace(/^\/authprofileapi/, "")
       }
     }
   }

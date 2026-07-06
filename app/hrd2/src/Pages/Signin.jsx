@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { msalInstance, sendToMicrosoft } from '../msalInstance';
+import { msalInstance, sendToMicrosoft } from '../Scripts/msalInstance';
 import { useNavigate } from 'react-router-dom';
+import HRD from "../Scripts/hrdApi";
 
 
 function Signin() {
@@ -20,11 +21,18 @@ function Signin() {
     async function handleSubmit(event) {
         event.preventDefault();
         const emailHint = email;
+        var domainHint = emailHint.split("@")[1]
         setEmail("");
         if (loading || blank) return;
         try {
             setLoading(true);
-            await sendToMicrosoft(emailHint);
+            const hrdResponse = await HRD(email);
+            console.log("hrd response: ", hrdResponse);
+            if (hrdResponse == "none") {
+                console.log("response is none");
+            }
+            console.log("domain? : ", domainHint)
+            await sendToMicrosoft(emailHint, domainHint);
         }
         catch (e) {
             console.log("exception: ", e);
