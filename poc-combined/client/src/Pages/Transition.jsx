@@ -1,5 +1,5 @@
 export default function Transition() {
     return(
-        <p>Transition</p>
+        <p>Invite code not accepted</p>
     )
 }
