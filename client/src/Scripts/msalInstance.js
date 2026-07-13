@@ -24,20 +24,9 @@ const loginScopes = ["openid", "profile", "email"];
 
 export async function sendToMicrosoft(email, domain) {
     console.log(email, domain);
-    //Call HRD DB, check valid domain_hint then check IDP from graph API to send domain_hint. Else
-    
-    if (email.includes("@inmar.com")) {
-      console.log("inside");
-      await msalInstance.loginRedirect({
-          scopes: loginScopes,
-          loginHint: email,
-          domainHint: "inmar.com"
-      });
-    } else {
-      await msalInstance.loginRedirect({
-          scopes: loginScopes,
-          loginHint: email,
-          domainHint: domain
-      });
-    }
+    await msalInstance.loginRedirect({
+        scopes: loginScopes,
+        loginHint: email,
+        domainHint: domain
+    });
 }

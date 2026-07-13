@@ -70,8 +70,8 @@ function Signup() {
         var response = await output.json();
 
         if (!output.ok) {
-            console.log("problem: ", response.message);
-            setResponseMessage(`problem: ${response.message}`);
+            console.log("problem: ", response.detail);
+            setResponseMessage(`problem: ${response.detail}`);
         } else {
             console.log("done: ", response.id);
             setResponseMessage(`completed: ${response.id}`);

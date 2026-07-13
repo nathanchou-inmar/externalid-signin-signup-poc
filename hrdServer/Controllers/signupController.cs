@@ -84,7 +84,7 @@ public class OIDCController : ControllerBase{
     {
         token = await cred.GetTokenAsync(
             new TokenRequestContext(["https://graph.microsoft.com/.default"]));
-        Console.WriteLine($"token received: {token.Token}");
+        Console.WriteLine($"token received");
     }
     public async Task<ObjectResult> attachToFlow(String idpId) {
         http.DefaultRequestHeaders.Authorization =
@@ -135,6 +135,29 @@ public class OIDCController : ControllerBase{
                 ClientSecret = input.clientSecret,
             },
         };
+
+        if (idp.Issuer.Length < 8) {
+            return Problem(detail: "Domain is too short", statusCode: 400);
+        }
+        if (!Uri.TryCreate(idp.Issuer, UriKind.Absolute, out _) || !idp.Issuer.Substring(0,8).Equals("https://")) {
+            return Problem(detail: "Issuer Invalid", statusCode: 400);
+        }
+        if (!Uri.TryCreate(idp.WellKnownEndpoint, UriKind.Absolute, out _) || 
+            !idp.WellKnownEndpoint.Substring(0,8).Equals("https://") ||
+            !idp.WellKnownEndpoint.Contains(".well-known/openid-configuration")
+            ) {
+            return Problem(detail: "WKE Invalid", statusCode: 400);
+        }
+        if (idp.WellKnownEndpoint[idp.WellKnownEndpoint.Length - 1].Equals('/') || idp.Issuer[idp.Issuer.Length - 1].Equals('/')) {
+            return Problem(detail: "No trailing /", statusCode: 400);
+        }
+        
+        bool entra = idp.WellKnownEndpoint.Split("/")[2].Equals("login.microsoftonline.com");
+        bool initial = idp.Issuer.Contains(".onmicrosoft.com/v2.0");
+        if (entra && !initial) {
+            return Problem(detail: "If entra tenant, need initial domain (.onmicrosoft.com)", statusCode: 400);
+        }
+
         try {
             await getToken();
             var result = await graph.Identity.IdentityProviders.PostAsync(idp);
@@ -153,7 +176,7 @@ public class OIDCController : ControllerBase{
             return Ok(new { message = "created with IdP Id: ", id = result.Id });
         }
         catch (ODataError e) {
-            return StatusCode(500, new { code = e.Error?.Code, message = e.Error?.Message });
+            return Problem(detail: e.Message, statusCode: 500);
         }
     }
 }
