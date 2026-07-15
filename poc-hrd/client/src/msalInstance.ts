@@ -22,10 +22,9 @@ const loginScopes = ["openid", "profile", "email"];
 
 export async function sendToMicrosoft(email: string, hint: string) {
     console.log("sent: ", msalInstance);
-    console.log(email, "HDIFJDKFJDSLK", hint);
     await msalInstance.loginRedirect({
         scopes: loginScopes,
         loginHint: email,
-        domainHint: "loginnp.costco.com",
+        domainHint: hint,
     });
 }

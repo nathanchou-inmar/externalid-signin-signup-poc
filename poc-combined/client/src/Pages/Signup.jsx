@@ -77,29 +77,7 @@ function Signup() {
             setResponseMessage(`completed: ${response.id}`);
         }
     }
-
-    const [message, setMessage] = useState("Press me");
-    async function apiTest(e) {
-        console.log("API button pressed");
-        const response = await fetch("/api/HelloWorld", {
-            method: "POST",
-            headers: {
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                message: "HI"
-            })
-        });
-        
-        if (!response.ok) {
-            console.log("bad", response.statusText);
-            throw Error("Something went wrong");
-        }
-
-        const output = (await response.json()).output;
-        console.log(output);
-        setMessage(output);
-    }
+    
     return(
         <div>
             <p>{responseMessage}</p>

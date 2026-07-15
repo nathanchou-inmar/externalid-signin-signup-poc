@@ -14,7 +14,6 @@ function App() {
     event.preventDefault();
     const emailHint = email;
     setEmail("");
-    console.log("hello");
     if (loading || blank) return;
     try {
       setLoading(true);
@@ -23,7 +22,7 @@ function App() {
       await sendToMicrosoft(emailHint, hrdResponse);
     }
     catch (e) {
-      console.log("marc cooked me", e);
+      console.log("error: ", e);
     }
     finally {
       setLoading(false);

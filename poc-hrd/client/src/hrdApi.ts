@@ -12,11 +12,9 @@ async function HRD(email: string) {
     });
 
     if (!response.ok) {
-        console.log("MARC IS COOKED", response.status);
         throw new Error(`Not Ok: ${response.status}`);
     }
     const output = await response.json();
-    console.log("HIHIHIHI", output);
     return output.idp;
 }
 

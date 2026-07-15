@@ -6,6 +6,9 @@ using Azure.Identity;
 using Azure.Core;
 using System.ClientModel.Primitives;
 
+/// <summary>
+/// For Testing
+/// </summary>
 [ApiController]
 [Route("/api/HelloWorld")]
 public class TestController : ControllerBase
@@ -30,6 +33,9 @@ public class TestController : ControllerBase
         });
     }
 }
+/// <summary>
+/// Check One-Time Link Validity
+/// </summary>
 [ApiController]
 [Route("/api/checkOTL")]
 public class OTLController : ControllerBase
@@ -55,6 +61,9 @@ public class OTLController : ControllerBase
     }
 }
 
+/// <summary>
+/// Create and attach OIDC Object
+/// </summary>
 [ApiController]
 [Route("/api/oidc")]
 public class OIDCController : ControllerBase{
